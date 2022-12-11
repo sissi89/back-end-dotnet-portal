@@ -1,0 +1,74 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/silvanamazzaglia/Documents/CloneMac/dotnet-6-jwt-authentication-api/WebApi.csproj": {}
+  },
+  "projects": {
+    "/Users/silvanamazzaglia/Documents/CloneMac/dotnet-6-jwt-authentication-api/WebApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/silvanamazzaglia/Documents/CloneMac/dotnet-6-jwt-authentication-api/WebApi.csproj",
+        "projectName": "WebApi",
+        "projectPath": "/Users/silvanamazzaglia/Documents/CloneMac/dotnet-6-jwt-authentication-api/WebApi.csproj",
+        "packagesPath": "/Users/silvanamazzaglia/.nuget/packages/",
+        "outputPath": "/Users/silvanamazzaglia/Documents/CloneMac/dotnet-6-jwt-authentication-api/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/silvanamazzaglia/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.15.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
