@@ -12,20 +12,22 @@ using WebApi.Helpers;
 using WebApi.Models;
 
 
-public interface ISinistriService{
+public interface ISinistriService
+{
     IEnumerable<SinistriModel> GetAll();
     IEnumerable<SinistriModel> GetSinistriByFiduciario(string username);
     SinistriModel GetPraticalDetail(string username, string id);
 
     SinistriModel GetSinistroID(string id);
-    string getString(string dato);
+
 }
-public class SinistriService  : ISinistriService {
- 
+public class SinistriService : ISinistriService
+{
+
 
     // parametri sorta di database dichiarato come un array list 
-    private List<SinistriModel> _sinistri =  new List<SinistriModel>{
-        new SinistriModel{ 
+    private List<SinistriModel> _sinistri = new List<SinistriModel>{
+        new SinistriModel{
         id ="1"   ,tipo =   "red"  , compa = 45,fiduciario="0001"  ,tipo_sinistro="1" ,
         data_incarico =  "2022-10-9 " ,
       nr_incarico  = 345679 ,
@@ -124,7 +126,7 @@ public class SinistriService  : ISinistriService {
          tipo  = "red" ,
          compa  =875,
          fiduciario  = "0001" ,
-         tipo_sinistro  = "3 ",
+         tipo_sinistro  = "3",
          data_incarico  = "2022-7-7 ",
          nr_sinistro  = 45676 ,
          nr_incarico  = 34567 ,
@@ -137,62 +139,62 @@ public class SinistriService  : ISinistriService {
          data_ultimo  = "2022-9-23 "
     }};
 
- private readonly AppSettings _appSettings;
+    private readonly AppSettings _appSettings;
 
     public SinistriService(IOptions<AppSettings> appSettings)
     {
         _appSettings = appSettings.Value;
     }
-public IEnumerable<SinistriModel> GetAll()
+    // tutti i sinistri con ruolo operatore
+    public IEnumerable<SinistriModel> GetAll()
     {
         // console.log
-        System.Console.Write("service");
+        //   System.Console.Write("service");
         return _sinistri;
     }
 
 
-// sinistro by id 
- public SinistriModel GetSinistroID(string id)
+    // sinistro by id 
+    public SinistriModel GetSinistroID(string id)
     {
-          return _sinistri.FirstOrDefault(x => x.id == id);
+        return _sinistri.FirstOrDefault(x => x.id == id);
     }
 
-// sinistri by username
-public IEnumerable<SinistriModel> GetSinistriByFiduciario(string username){
-    //List<int> termsList = new List<int>(); /7 array list
-List<SinistriModel> sinistribyUsername= new List<SinistriModel> ();
+    // sinistri by username
+    public IEnumerable<SinistriModel> GetSinistriByFiduciario(string username)
+    {
+        //List<int> termsList = new List<int>(); /7 array list
+        List<SinistriModel> sinistribyUsername = new List<SinistriModel>();
 
-for (int i = 0 ; i<_sinistri.Count ; i++){
-    if(_sinistri[i].fiduciario == username){
-     
-       sinistribyUsername.Add(_sinistri[i]);
+        for (int i = 0; i < _sinistri.Count; i++)
+        {
+            if (_sinistri[i].fiduciario == username)
+            {
+
+                sinistribyUsername.Add(_sinistri[i]);
+            }
+        }
+        System.Console.WriteLine("sinistri by fiduciario");
+        return sinistribyUsername;
+
+
     }
-}
 
-return sinistribyUsername;
-
-
-}
-// prova api
-public string getString(string dato){
-return dato;
-}
     // sinistro by username e id
-
-    
-    public   SinistriModel GetPraticalDetail(string username, string id)
+    public SinistriModel GetPraticalDetail(string username, string id)
     {
-         List<SinistriModel>  sinistri =  (List<SinistriModel>)GetSinistriByFiduciario(username);
-         System.Console.WriteLine("sinistri"+ sinistri);
-       /*       for(int i = 0; i < sinistri.Count ; i++){
-        if(sinistri[i].id == id){
-          return sinistri[i];
-        } */
-         // find di typescript
+        List<SinistriModel> sinistri = (List<SinistriModel>)GetSinistriByFiduciario(username);
+        //  System.Console.WriteLine("sinistri"+ sinistri);
+        /*       for(int i = 0; i < sinistri.Count ; i++){
+         if(sinistri[i].id == id){
+           return sinistri[i];
+         } */
+        // find di typescript
+        System.Console.WriteLine("dettaglio sinistri da fiduciario");
         return sinistri.FirstOrDefault(x => x.id == id);
-      
-     
+
+
     }
 
-   
+
 }

@@ -38,10 +38,10 @@ public class UserService : IUserService
     {
         var user = _users.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
 
-        // return null if user not found
+        // ritorna null 
         if (user == null) return null;
 
-        // authentication successful so generate jwt token
+        // genera token se l autenticazione è andata a buon fine
         var token = generateJwtToken(user);
 
         return new AuthenticateResponse(user, token);
@@ -59,23 +59,26 @@ public class UserService : IUserService
         return _users.FirstOrDefault(x => x.id == id);
     }
 
-    // helper methods
-
+ 
+    // generare token
     private string generateJwtToken(User user)
     {
      
+     // uso libreria per la creazione del token
         var tokenHandler = new JwtSecurityTokenHandler();
-        // key
+        // codifica
         var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-        System.Console.WriteLine("key"+key);
+      
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[] { new Claim("id", user.id.ToString()) }),
-               // token valido 7 giorni
+               // token valido 7 giorni a partire dalla data di oggi 
             Expires = DateTime.UtcNow.AddDays(7),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
+        // creo token 
         var token = tokenHandler.CreateToken(tokenDescriptor);
+        // genero 
         return tokenHandler.WriteToken(token);
     }
 

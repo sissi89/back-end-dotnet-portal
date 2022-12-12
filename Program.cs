@@ -3,7 +3,7 @@ using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// add services to DI container
+// aaggiungo i servzi per le chiamate
 {
     var services = builder.Services;
     services.AddCors();
