@@ -56,6 +56,7 @@ public class UserService : IUserService
 
     public User GetById(int id)
     {
+       
         return _users.FirstOrDefault(x => x.id == id);
     }
 

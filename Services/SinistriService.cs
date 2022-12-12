@@ -46,7 +46,7 @@ public class SinistriService : ISinistriService
          compa  =456,
          fiduciario  = "0002",
          tipo_sinistro  ="2" ,
-         data_incarico  = "2022-10-9" ,
+         data_incarico  = "2022-5-9" ,
          nr_sinistro = 123,
          nr_incarico  = 34567 ,
          prestazione_richiesta  = "" ,
@@ -63,7 +63,7 @@ public class SinistriService : ISinistriService
          compa  =654,
          fiduciario  = "0001" ,
          tipo_sinistro  = "3",
-         data_incarico  = "2022-9-7" ,
+         data_incarico  = "2022-4-7" ,
          nr_sinistro = 234,
          nr_incarico  = 34567 ,
          prestazione_richiesta  =  "",
@@ -79,7 +79,7 @@ public class SinistriService : ISinistriService
          compa  =476,
          fiduciario  ="0002" ,
          tipo_sinistro  = "2" ,
-         data_incarico  = "2022-9-7" ,
+         data_incarico  = "2022-2-7" ,
          nr_sinistro  = 456 ,
          nr_incarico  = 4444 ,
          prestazione_richiesta  = "" ,
@@ -91,11 +91,11 @@ public class SinistriService : ISinistriService
          data_ultimo  = "2022-9-23" ,
     },new SinistriModel{
          id  =  "5" ,
-         tipo  = "red ",
+         tipo  = "yellow",
          compa  =875,
          fiduciario  = "0001" ,
          tipo_sinistro  = "1",
-         data_incarico  = "2022-7-7 ",
+         data_incarico  = "2022-1-7 ",
          nr_sinistro  = 45676 ,
          nr_incarico  = 345679 ,
          prestazione_richiesta  = "" ,
@@ -111,7 +111,7 @@ public class SinistriService : ISinistriService
          compa  =875,
          fiduciario  = "0002" ,
          tipo_sinistro  = "3" ,
-         data_incarico  = "2022-7-7" ,
+         data_incarico  = "2022-4-7" ,
          nr_sinistro  = 45676 ,
          nr_incarico  = 345679 ,
          prestazione_richiesta  = "" ,
@@ -127,7 +127,7 @@ public class SinistriService : ISinistriService
          compa  =875,
          fiduciario  = "0001" ,
          tipo_sinistro  = "3",
-         data_incarico  = "2022-7-7 ",
+         data_incarico  = "2022-3-7 ",
          nr_sinistro  = 45676 ,
          nr_incarico  = 34567 ,
          prestazione_richiesta  =  "" ,
@@ -135,6 +135,22 @@ public class SinistriService : ISinistriService
          targa_assicurato  = "CG918TG" ,
          controparte  = "Rossi Mario" ,
          targa_controparte  = "BG564OY" ,
+         nr_int  =21,
+         data_ultimo  = "2022-9-23 "
+    },new SinistriModel{
+         id  =  "8" ,
+         tipo  = "yellow" ,
+         compa  =875,
+         fiduciario  = "0002" ,
+         tipo_sinistro  = "2",
+         data_incarico  = "2022-9-7 ",
+         nr_sinistro  = 45675 ,
+         nr_incarico  = 347654 ,
+         prestazione_richiesta  =  "" ,
+         assicurato  = "Rossi Mario" ,
+         targa_assicurato  = "BG564OY" ,
+         controparte  = " verdi alessandro" ,
+         targa_controparte  = " CG918TG" ,
          nr_int  =21,
          data_ultimo  = "2022-9-23 "
     }};
@@ -156,26 +172,38 @@ public class SinistriService : ISinistriService
 
     // sinistro by id 
     public SinistriModel GetSinistroID(string id)
+
     {
+          System.Console.WriteLine("sinistri by fiduciario");
         return _sinistri.FirstOrDefault(x => x.id == id);
     }
 
     // sinistri by username
     public IEnumerable<SinistriModel> GetSinistriByFiduciario(string username)
     {
+     
         //List<int> termsList = new List<int>(); /7 array list
         List<SinistriModel> sinistribyUsername = new List<SinistriModel>();
-
-        for (int i = 0; i < _sinistri.Count; i++)
+                                        //lenght
+       /*   for (int i = 0; i < _sinistri.Count; i++) 
         {
             if (_sinistri[i].fiduciario == username)
             {
 
                 sinistribyUsername.Add(_sinistri[i]);
             }
-        }
-        System.Console.WriteLine("sinistri by fiduciario");
-        return sinistribyUsername;
+        // return sinistribyUsername;
+   
+        }  */
+        
+            System.Console.WriteLine("sinistri by fiduciario aggiorno la console");
+            return _sinistri.FindAll(item => item.fiduciario == username);
+        
+  
+
+
+       
+        
 
 
     }

@@ -3,7 +3,7 @@ using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// aaggiungo i servzi per le chiamate
+// aggiungo i servzi per le chiamate
 {
     var services = builder.Services;
     services.AddCors();
@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
     // configure strongly typed settings object
     services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
-    // configure DI for application services
+    // aggiungo i controller
    services.AddScoped<IUserService, UserService>();
 
    services.AddScoped<ISinistriService, SinistriService>();

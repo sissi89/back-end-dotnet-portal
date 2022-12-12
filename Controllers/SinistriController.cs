@@ -12,6 +12,7 @@ public class SinistriController : ControllerBase
 {
 
     private ISinistriService _sinistriService;
+    private object message;
 
     public SinistriController(ISinistriService sinistriService)
     {
@@ -31,8 +32,17 @@ public class SinistriController : ControllerBase
     [HttpGet("sinistro/{id}")]
     public   SinistriModel getId(string id)
     {
+      
+    try {
         var sinistro = _sinistriService.GetSinistroID(id);
         return sinistro;
+    }
+    catch (IndexOutOfRangeException e)
+    {
+        System.Console.WriteLine(e);
+        throw new ArgumentOutOfRangeException(
+            "Parameter index is out of range.", e);
+    }
     }
 
 
@@ -41,29 +51,20 @@ public class SinistriController : ControllerBase
     public async Task<IActionResult> getByUsername(string username)
     {
          await Task.Delay(1000);
-        var sinistri =   _sinistriService.GetSinistriByFiduciario(username);
-        if (username == null)
+
+           if (username == null)
         {
             return BadRequest(new { message = "Username non corretto" });
         }
         else
         {
+             var sinistri =   _sinistriService.GetSinistriByFiduciario(username);
             return  Ok(sinistri);
         }
 
 
     }
-/* public async Task<ActionResult<IEnumerable<User>>> MyController()
-{
-    var res = await _userService.GetAll();
 
-    if (res == null)
-    {
-        return NotFound();
-    }
-
-    return Ok(res);
-} */
 
     // dettagli pratica 
     [HttpGet("{username}/{id}")]
