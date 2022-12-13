@@ -18,15 +18,15 @@ public class SinistriModel{
 
     public string id {get;set;}
     public string tipo {get;set;}
-    public int compa {get;set;}
+    public string compa {get;set;}
 
     public string fiduciario {get;set;}
 
     public string tipo_sinistro {get;set;}
 
     public string data_incarico {get;set;}
-    public int nr_incarico {get;set;}
-public int nr_sinistro {get;set;}
+    public string nr_incarico {get;set;}
+public string nr_sinistro {get;set;}
     public string prestazione_richiesta {get;set;}
 
     public string assicurato {get;set;}

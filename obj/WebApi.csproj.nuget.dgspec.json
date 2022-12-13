@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\WebApi.csproj": {}
+    "/Users/silvanamazzaglia/Documents/cloneprova2/back-end/WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\WebApi.csproj": {
+    "/Users/silvanamazzaglia/Documents/cloneprova2/back-end/WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\WebApi.csproj",
+        "projectUniqueName": "/Users/silvanamazzaglia/Documents/cloneprova2/back-end/WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\WebApi.csproj",
-        "packagesPath": "C:\\Users\\operatore\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\obj\\",
+        "projectPath": "/Users/silvanamazzaglia/Documents/cloneprova2/back-end/WebApi.csproj",
+        "packagesPath": "/Users/silvanamazzaglia/.nuget/packages/",
+        "outputPath": "/Users/silvanamazzaglia/Documents/cloneprova2/back-end/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\operatore\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/silvanamazzaglia/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,6 +41,10 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
@@ -68,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
         }
       }
     }
