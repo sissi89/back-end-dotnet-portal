@@ -1,5 +1,6 @@
 namespace WebApi.Controllers;
 
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Helpers;
 using WebApi.Models;
@@ -20,36 +21,29 @@ public class SinistriController : ControllerBase
 
     }
     // get tutti gli i servizi
-    [HttpGet]
+     [HttpGet]
 
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> getIndex()
+    {
+       //  await Task.Delay(1000);
+         return Ok(await _sinistriService.Index());
+    } 
+ 
+    // dettaglio del servizio 
+    [HttpPost("sinistro")]
+    public  async Task<IActionResult>  getId([FromBody] SinistroRequest id)
     {
          await Task.Delay(1000);
-        var sinistri =  _sinistriService.GetAll();
-        return Ok(sinistri);
-    }
-
-    // dettaglio del servizio 
-    [HttpGet("sinistro/{id}")]
-    public   SinistriModel getId(string id)
-    {
-      
-    try {
+       // System.Console.WriteLine("prova post"+id);
         var sinistro = _sinistriService.GetSinistroID(id);
-        return sinistro;
-    }
-    catch (IndexOutOfRangeException e)
-    {
-        System.Console.WriteLine(e);
-        throw new ArgumentOutOfRangeException(
-            "Parameter index is out of range.", e);
-    }
+       // System.Console.WriteLine("sinistro:"+sinistro);
+        return Ok(sinistro);
     }
 
 
     // get servizi con username = fiduciario
-    [HttpGet("{username}")]
-    public async Task<IActionResult> getByUsername(string username)
+    [HttpPost("fiduciario")]
+    public async Task<IActionResult> getByUsername([FromBody] SinistroRequest username)
     {
          await Task.Delay(1000);
 
@@ -66,15 +60,40 @@ public class SinistriController : ControllerBase
 
     }
 
+ [HttpGet("prove/{id}")]
 
+ public async Task<SinistriModel> getPraticaDetail2( SinistroRequest id){
+     
+System.Console.WriteLine("id: sono nell getprtica controller  ");
+             var sinistro = await    _sinistriService.GetPraticalDetail2(id);
+            return  sinistro;
+        
+ }
     // dettagli pratica 
-    [HttpGet("{username}/{id}")]
+    [HttpPost("sinistroFiduciario")]
 
-    public async Task< SinistriModel> getDetailPratical(string username, string id)
+   
+
+    public async Task< SinistriModel> getDetailPratical(SinistroRequest body)
     {
          await Task.Delay(1000);
-        var sinistro = _sinistriService.GetPraticalDetail(username, id);
+        var sinistro = _sinistriService.GetPraticalDetail(body);
         return sinistro;
-    }
+    } 
+
+/* [HttpGet("prova")]
+   public async Task<IActionResult> getIndex(){
+    //GetTodosWithJsonExtension
+  return Ok(await _sinistriService.Index());
+
+    
+ }
+ */
+
+
+    
+    
+
 
 }
+

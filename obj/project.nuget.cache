@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7ARpkm71dZP/ulUYCBl2wthcMjdYTzaNLyvjyGjI21AMLq8EcOvel+E/hspQC90pTzp/r0LAWzql/RaeSOXJAA==",
+  "dgSpecHash": "feuJQG8H6xAlwFGhp5SRtu5djC38TpDasH/fnIBSsCGwIx3C7WofbgOE81isb7HNfA9ClEzo+TbkrT/5r5qAMw==",
   "success": true,
   "projectFilePath": "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\WebApi.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\operatore\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.10.0\\microsoft.identitymodel.protocols.6.10.0.nupkg.sha512",
     "C:\\Users\\operatore\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.10.0\\microsoft.identitymodel.protocols.openidconnect.6.10.0.nupkg.sha512",
     "C:\\Users\\operatore\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.15.0\\microsoft.identitymodel.tokens.6.15.0.nupkg.sha512",
+    "C:\\Users\\operatore\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\operatore\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.15.0\\system.identitymodel.tokens.jwt.6.15.0.nupkg.sha512",
     "C:\\Users\\operatore\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512"
   ],
