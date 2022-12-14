@@ -24,7 +24,6 @@ public interface ISinistriService
 public class SinistriService : ISinistriService
 {
 
-
     // parametri sorta di database dichiarato come un array list 
     private List<SinistriModel> _sinistri = new List<SinistriModel>{
         new SinistriModel{
@@ -174,36 +173,36 @@ public class SinistriService : ISinistriService
     public SinistriModel GetSinistroID(string id)
 
     {
-          System.Console.WriteLine("sinistri by fiduciario");
+        System.Console.WriteLine("sinistri by fiduciario");
         return _sinistri.FirstOrDefault(x => x.id == id);
     }
 
     // sinistri by username
-    public IEnumerable<SinistriModel> GetSinistriByFiduciario(string username)
+    public  IEnumerable<SinistriModel> GetSinistriByFiduciario(string username)
     {
-     
+
         //List<int> termsList = new List<int>(); /7 array list
         List<SinistriModel> sinistribyUsername = new List<SinistriModel>();
-                                        //lenght
-       /*   for (int i = 0; i < _sinistri.Count; i++) 
-        {
-            if (_sinistri[i].fiduciario == username)
-            {
+        //lenght
+        /*   for (int i = 0; i < _sinistri.Count; i++) 
+         {
+             if (_sinistri[i].fiduciario == username)
+             {
 
-                sinistribyUsername.Add(_sinistri[i]);
-            }
-        // return sinistribyUsername;
-   
-        }  */
-        
-            System.Console.WriteLine("sinistri by fiduciario aggiorno la console");
-            return _sinistri.FindAll(item => item.fiduciario == username);
-        
-  
+                 sinistribyUsername.Add(_sinistri[i]);
+             }
+         // return sinistribyUsername;
+
+         }  */
+
+        System.Console.WriteLine("sinistri by fiduciario");
+        return _sinistri.FindAll(item => item.fiduciario == username);
 
 
-       
-        
+
+
+
+
 
 
     }

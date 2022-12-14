@@ -22,9 +22,10 @@ public class SinistriController : ControllerBase
     // get tutti gli i servizi
     [HttpGet]
 
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        var sinistri = _sinistriService.GetAll();
+         await Task.Delay(1000);
+        var sinistri =  _sinistriService.GetAll();
         return Ok(sinistri);
     }
 
@@ -69,8 +70,9 @@ public class SinistriController : ControllerBase
     // dettagli pratica 
     [HttpGet("{username}/{id}")]
 
-    public SinistriModel getDetailPratical(string username, string id)
+    public async Task< SinistriModel> getDetailPratical(string username, string id)
     {
+         await Task.Delay(1000);
         var sinistro = _sinistriService.GetPraticalDetail(username, id);
         return sinistro;
     }
