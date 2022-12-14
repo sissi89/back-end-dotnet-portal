@@ -31,9 +31,9 @@ public class SinistriController : ControllerBase
  
     // dettaglio del servizio 
     [HttpPost("sinistro")]
-    public  async Task<IActionResult>  getId([FromBody] SinistroRequest id)
+    public IActionResult  getId([FromBody] SinistroRequest id)
     {
-         await Task.Delay(1000);
+       //  await Task.Delay(100);
        // System.Console.WriteLine("prova post"+id);
         var sinistro = _sinistriService.GetSinistroID(id);
        // System.Console.WriteLine("sinistro:"+sinistro);
@@ -45,7 +45,7 @@ public class SinistriController : ControllerBase
     [HttpPost("fiduciario")]
     public async Task<IActionResult> getByUsername([FromBody] SinistroRequest username)
     {
-         await Task.Delay(1000);
+         await Task.Delay(100);
 
            if (username == null)
         {
@@ -60,36 +60,27 @@ public class SinistriController : ControllerBase
 
     }
 
- [HttpGet("prove/{id}")]
 
- public async Task<SinistriModel> getPraticaDetail2( SinistroRequest id){
-     
-System.Console.WriteLine("id: sono nell getprtica controller  ");
-             var sinistro = await    _sinistriService.GetPraticalDetail2(id);
-            return  sinistro;
-        
- }
     // dettagli pratica 
     [HttpPost("sinistroFiduciario")]
-
-   
-
     public async Task< SinistriModel> getDetailPratical(SinistroRequest body)
     {
-         await Task.Delay(1000);
-        var sinistro = _sinistriService.GetPraticalDetail(body);
+      //   await Task.Delay(1000);
+
+        var sinistro = await _sinistriService.GetPraticalDetail2(body);
         return sinistro;
     } 
 
-/* [HttpGet("prova")]
-   public async Task<IActionResult> getIndex(){
-    //GetTodosWithJsonExtension
-  return Ok(await _sinistriService.Index());
+ 
+/*  [HttpPost("prova")]
 
-    
- }
- */
-
+ public async Task<SinistriModel> getPraticaDetail2([FromBody] string id){
+     
+//System.Console
+             var sinistro = await    _sinistriService.GetPraticalDetail2(id);
+            return  sinistro;
+        
+ } */
 
     
     

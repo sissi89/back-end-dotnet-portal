@@ -24,22 +24,22 @@ using System.Net.Http.Headers;
 
 public interface ISinistriService
 {
-  IEnumerable<SinistriModel> GetAll();
+    IEnumerable<SinistriModel> GetAll();
     //public Task<List<SinistriModel>> GetAll();
     IEnumerable<SinistriModel> GetSinistriByFiduciario(SinistroRequest username);
-   SinistriModel GetPraticalDetail(SinistroRequest body);
+   
 
-    SinistriModel GetSinistroID(SinistroRequest  id);
+    SinistriModel GetSinistroID(SinistroRequest id);
     Task<List<SinistriModel>> Index();
-   Task<SinistriModel> GetPraticalDetail2(SinistroRequest body);
-    }
+    Task<SinistriModel> GetPraticalDetail2(SinistroRequest  body);
+}
 public class SinistriService : ISinistriService
 {
 
-  public List<SinistriModel> _sinistriNode = new List<SinistriModel>{};
+    public List<SinistriModel> _sinistriNode = new List<SinistriModel> { };
 
     // parametri sorta di database dichiarato come un array list  array da sostituire
-     private List<SinistriModel> _sinistri = new List<SinistriModel>{
+    private List<SinistriModel> _sinistri = new List<SinistriModel>{
         new SinistriModel{
         id ="1"   ,tipo =   "red"  , compa = "45",fiduciario="0001"  ,tipo_sinistro="1" ,
         data_incarico =  "2022-10-9 " ,
@@ -167,9 +167,9 @@ public class SinistriService : ISinistriService
          nr_int  ="21",
          data_ultimo  = "2022-9-23 "
     }};
- 
-    
-    private List<SinistriModel> sinistriFetch = new List<SinistriModel>{};
+
+
+    private List<SinistriModel> sinistriFetch = new List<SinistriModel> { };
     private readonly AppSettings _appSettings;
 
     public SinistriService(IOptions<AppSettings> appSettings)
@@ -178,13 +178,13 @@ public class SinistriService : ISinistriService
     }
     // tutti i sinistri con ruolo operatore
     public IEnumerable<SinistriModel> GetAll()
-   //public  async Task<List<SinistriModel>> GetAll()
+    //public  async Task<List<SinistriModel>> GetAll()
     {
-       
+
         // console.log
-       
+
         System.Console.WriteLine(_sinistriNode.Count);
-        System.Console.WriteLine(_sinistriNode+" "+"sinistri node ");
+        System.Console.WriteLine(_sinistriNode + " " + "sinistri node ");
         return _sinistriNode;
     }
 
@@ -193,11 +193,11 @@ public class SinistriService : ISinistriService
     public SinistriModel GetSinistroID(SinistroRequest request)
 
     {
-       // System.Console.WriteLine("sinistri by fiduciario"+request.id);
+        // System.Console.WriteLine("sinistri by fiduciario"+request.id);
 
         SinistriModel sinistro = _sinistri.FirstOrDefault(x => x.id == request.id);
 
-       System.Console.WriteLine("sinistro service"+sinistro);
+        System.Console.WriteLine("sinistro service" + sinistro);
 
         return sinistro;
     }
@@ -207,14 +207,14 @@ public class SinistriService : ISinistriService
     {
 
         //List<int> termsList = new List<int>(); /7 array list
-      //  List<SinistriModel> sinistribyUsername = new List<SinistriModel>();
-                                      
-    
-        
-            System.Console.WriteLine("sinistri by fiduciario tutti i sinistri");
-            return _sinistri.FindAll(item => item.fiduciario == username.username);
-        
-  
+        //  List<SinistriModel> sinistribyUsername = new List<SinistriModel>();
+
+
+
+        System.Console.WriteLine("sinistri by fiduciario tutti i sinistri");
+        return _sinistri.FindAll(item => item.fiduciario == username.username);
+
+
 
 
 
@@ -222,71 +222,46 @@ public class SinistriService : ISinistriService
     }
 
     // sinistro by username e id
-     public  SinistriModel GetPraticalDetail(SinistroRequest body)
-    {
-        /* System.Console.WriteLine("body   "+ body);
-        if(body != null){
-              System.Console.WriteLine("dettaglio sinistri da fiduciario ");
-       List<SinistriModel> sinistri = (List<SinistriModel>)GetSinistriByFiduciario(body);
-         // System.Console.WriteLine("sinistri"+ _sinistri);
-        
-             
     
-      return _sinistri.FirstOrDefault(x => x.id == body.id);
-
-        }else{
-                   System.Console.WriteLine("body non inserito  "+ body);
-                   return null;
-        }
-        */
-        // System.Console.WriteLine("sinistri by fiduciario"+request.id);
-
-        SinistriModel sinistro = _sinistri.FirstOrDefault(x => x.id == body.id);
-
-       // System.Console.WriteLine("sinistro service"+sinistro);
-
-        return sinistro;
-
-
-    } 
-       public async Task<SinistriModel> GetPraticalDetail2(SinistroRequest body)
+    public async Task<SinistriModel> GetPraticalDetail2(SinistroRequest body)
     {
-       
-System.Console.WriteLine("id: sono nell getprtica controller  ",body.id);
-     // mi prendo tutti i sinistri 
-     List<SinistriModel> sinistri = await Index();
-     System.Console.WriteLine("sinistri  "+sinistri+" "+sinistri.Count);
-       // System.Console.WriteLine("sinistro service"+sinistro);
-        SinistriModel sinistro = sinistri.FirstOrDefault(x => x.id == body.id);
+
+        System.Console.WriteLine("id: sono nell getprtica controller  ");
+        // mi prendo tutti i sinistri 
+        List<SinistriModel> sinistri = await Index();
+       // System.Console.WriteLine("sinistri  " + sinistri + " " + sinistri.Count);
+        // System.Console.WriteLine("sinistro service"+sinistro);
+        List<SinistriModel> sinistriFiduciario =sinistri.FindAll(item => item.fiduciario == body.username);
+
+        SinistriModel sinistro = sinistriFiduciario.FirstOrDefault(x => x.id == body.id);
         return sinistro;
         //return sinistro;
 
 
-    } 
-/* public SinistriModel getAllSinistri(){
-    string url = "http://localhost:3000/sinistri";
-    using (var httpClient = new HttpClient())
-} */
-public async Task<List<SinistriModel>> Index(){
- string url = "http://localhost:3000/sinistri";
- HttpClient client = new HttpClient();
-client.BaseAddress = new Uri(url);
-client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-var response = await client.GetAsync(url);
+    }
+        // all sinistri chiamata
+    public async Task<List<SinistriModel>> Index()
+    {
+        string url = "http://localhost:3000/sinistri";
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri(url);
+        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        var response = await client.GetAsync(url);
 
-response.EnsureSuccessStatusCode();
-string data = await response.Content.ReadAsStringAsync();
-System.Console.WriteLine(data);
+        response.EnsureSuccessStatusCode();
+        string data = await response.Content.ReadAsStringAsync();
+       // System.Console.WriteLine(data);
 
-    Console.WriteLine("fatto");
-  //   = JsonConvert.DeserializeObject<List<SinistriModel>>(data);
- // var sinistro =  JsonConvert.DeserializeObject<List<SinistriModel>>(data);
-var prova  =  JsonConvert.DeserializeObject<List<SinistriModel>>(data);
-Console.WriteLine(prova+"  "+"prova");
-for(int i = 0 ; i< prova.Count ; i++){
-   _sinistriNode.Add(prova[i]);
-} 
-System.Console.WriteLine(_sinistriNode.Count);
- return _sinistriNode;
-}
+        Console.WriteLine("fatto");
+        //   = JsonConvert.DeserializeObject<List<SinistriModel>>(data);
+        // var sinistro =  JsonConvert.DeserializeObject<List<SinistriModel>>(data);
+        var prova = JsonConvert.DeserializeObject<List<SinistriModel>>(data);
+       // Console.WriteLine(prova + "  " + "prova");
+        for (int i = 0; i < prova.Count; i++)
+        {
+            _sinistriNode.Add(prova[i]);
+        }
+        System.Console.WriteLine(_sinistriNode.Count);
+        return _sinistriNode;
+    }
 }
