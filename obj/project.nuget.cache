@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "feuJQG8H6xAlwFGhp5SRtu5djC38TpDasH/fnIBSsCGwIx3C7WofbgOE81isb7HNfA9ClEzo+TbkrT/5r5qAMw==",
+  "dgSpecHash": "rBomzRph1l8vaLB7QZDUyOI/FfdH+wAxDt4ga8XbtKTIQNQYP9xira3vntE2+eySs34LdlCUk7RieDY+1BvsFQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end\\back-end-dotnet-portal\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\operatore\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.0\\microsoft.aspnetcore.authentication.jwtbearer.6.0.0.nupkg.sha512",
     "C:\\Users\\operatore\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

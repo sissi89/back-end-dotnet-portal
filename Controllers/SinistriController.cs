@@ -43,19 +43,11 @@ public class SinistriController : ControllerBase
 
     // get servizi con username = fiduciario
     [HttpPost("fiduciario")]
-    public async Task<IActionResult> getByUsername([FromBody] SinistroRequest username)
+    public async Task<List<SinistriModel>> getByUsername([FromBody] SinistroRequest username)
     {
-         await Task.Delay(100);
-
-           if (username == null)
-        {
-            return BadRequest(new { message = "Username non corretto" });
-        }
-        else
-        {
-             var sinistri =   _sinistriService.GetSinistriByFiduciario(username);
-            return  Ok(sinistri);
-        }
+         
+        var sinistri = await _sinistriService.GetSinistriByFiduciario(username);
+        return sinistri;
 
 
     }
@@ -71,16 +63,6 @@ public class SinistriController : ControllerBase
         return sinistro;
     } 
 
- 
-/*  [HttpPost("prova")]
-
- public async Task<SinistriModel> getPraticaDetail2([FromBody] string id){
-     
-//System.Console
-             var sinistro = await    _sinistriService.GetPraticalDetail2(id);
-            return  sinistro;
-        
- } */
 
     
     
