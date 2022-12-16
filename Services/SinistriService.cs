@@ -40,7 +40,7 @@ public class SinistriService : ISinistriService
     // dichiaro client che mi serve per fare la fetch dei dati
     static HttpClient client = new HttpClient();
     // parametri sorta di database dichiarato come un array list  array da sostituire
-
+    string url = "http://localhost:3000/sinistri";
 
 
     private List<SinistriModel> sinistriFetch = new List<SinistriModel> { };
@@ -120,25 +120,50 @@ public class SinistriService : ISinistriService
     // all sinistri chiamata 
 
     public async Task<List<SinistriModel>> Index()
+    //// client.BaseAddress va dichairato solo una volta 
     {
-        // dichiaro da dove fetch i dati
-        string url = "http://localhost:3000/sinistri";
-        client.BaseAddress = new Uri(url);
+        if (client.BaseAddress == null)
+        {
+            System.Console.WriteLine("sono nell if " + client.BaseAddress);
+            client.BaseAddress = new Uri(url);
+           return  await getSinistri();
+
+            
+        }
+        else
+        {
+            System.Console.WriteLine("sono nell else " + client.BaseAddress);
+            // client.BaseAddress = client.BaseAddress;
+        return  await getSinistri();
+         
+
+        }
+    }
+    // fetch dati da url dichiarata sopra
+    public async Task<List<SinistriModel>> getSinistri()
+    {
+
         client.DefaultRequestHeaders.Accept.Clear();
+        client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json"));
+
+
         // gli dico che deve accettare file json 
         client.DefaultRequestHeaders.Accept.Add(
               new MediaTypeWithQualityHeaderValue("application/json")
         );
         try
         {
-          //  System.Console.WriteLine("sono nel try catch");
+            //  System.Console.WriteLine("sono nel try catch");
+
             var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             // mi salvo tutti i dati in una stringa 
             string data = await response.Content.ReadAsStringAsync();
             // converto in json
-            var  json = JsonConvert.DeserializeObject<List<SinistriModel>>(data);
-            for (int i=0; i <json.Count ; i++){
+            var json = JsonConvert.DeserializeObject<List<SinistriModel>>(data);
+            for (int i = 0; i < json.Count; i++)
+            {
                 _sinistriNode.Add(json[i]);
             }
             return _sinistriNode;
@@ -153,7 +178,6 @@ public class SinistriService : ISinistriService
 
 
     }
-
 
 
 

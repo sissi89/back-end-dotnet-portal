@@ -18,7 +18,7 @@ public class SinistriModel{
     //    public int Id { get; set; }
 
     public string id {get;set;}
-    public string tipo {get;set;}
+    public string sinisterState {get;set;}
     public string compa {get;set;}
 
     public string fiduciario {get;set;}
