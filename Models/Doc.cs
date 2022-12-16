@@ -1,10 +1,14 @@
 /* export interface Doc{
-    name: string, 
-    url:string,
-    lastModified: string,
-    lastModifiedDate: Date,
-    webkitRelativePath: string, 
-    size: number
+  {
+                "id":1,
+                "name":"Example",
+                "document":"https://res.cloudinary.com/demo/image/upload/example_pdf"
+                
+            },{
+                "id":2,
+                "name":"Sample",
+                "document":"https://www.africau.edu/images/default/sample.pdf"
+            }
 } */
 
 namespace WebApi.Models;
@@ -12,13 +16,9 @@ namespace WebApi.Models;
 using WebApi.Entities;
 
 public class Doc {
-    public string name {get;set;}
-    public string url {get;set;}
-    public string lastModified {get;set;}
+  int id {get; set;}
+  string name {get;set;}
+DetailDocs documento {get;set;}
 
-    public DateTime   lastModifiedDate {get;set;}
 
-    public string  webkitRelativePath {get;set;}
-
-    public int number;
 }

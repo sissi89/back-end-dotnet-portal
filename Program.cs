@@ -11,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
     // configure strongly typed settings object
     services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-
+    // libreria Ng
+    services.AddSwaggerDocument();
     // aggiungo i controller
    services.AddScoped<IUserService, UserService>();
 
@@ -23,7 +24,10 @@ var app = builder.Build();
 // prova 
 app.MapGet("/silvana", () => "Hello World!");
 // Il metodo MapControllerRoute viene utilizzato per configurare il routing
+app.UseOpenApi();
+app.UseSwaggerUi3();
 
+app.UseDeveloperExceptionPage();
 // configure HTTP request pipeline
 {
     // global cors policy

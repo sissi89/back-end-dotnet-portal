@@ -21,7 +21,7 @@ public class UserService : IUserService
     // database fake
     private List<User> _users = new List<User>
     {
-        new User { id = 1, role =1,  Username = "Operatore", Password = "Operatore" }, // operatore sogesa
+        new User { id = 1,  role=1,  Username = "Operatore", Password = "Operatore" }, // operatore sogesa
         new User { id = 2,  role=2,   Username = "0001", Password = "123456" }, // fiduciario
         new User { id = 3,  role=2,   Username = "0002", Password = "123456" }
     };

@@ -31,13 +31,13 @@ public class SinistriController : ControllerBase
  
     // dettaglio del servizio 
     [HttpPost("sinistro")]
-    public IActionResult  getId([FromBody] SinistroRequest id)
+    public async Task<SinistriModel> getId([FromBody] SinistroRequest id)
     {
        //  await Task.Delay(100);
        // System.Console.WriteLine("prova post"+id);
-        var sinistro = _sinistriService.GetSinistroID(id);
+        var sinistro = await  _sinistriService.GetSinistroID(id);
        // System.Console.WriteLine("sinistro:"+sinistro);
-        return Ok(sinistro);
+        return sinistro;
     }
 
 
@@ -51,7 +51,6 @@ public class SinistriController : ControllerBase
 
 
     }
-
 
     // dettagli pratica 
     [HttpPost("sinistroFiduciario")]

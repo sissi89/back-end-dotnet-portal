@@ -2,6 +2,7 @@ namespace WebApi.Models;
 
 using WebApi.Entities;
 
+
 /* <tr class="tr-1"> 
                      <th class="th-1">Tipo di Urgenza</th>
                      <th class="th-1">Compagnia</th>
@@ -41,7 +42,7 @@ public string nr_sinistro {get;set;}
 
      public string data_ultimo {get;set;}
 
-     public Doc[] document {get;set;}
+     public Doc[] documents {get;set;}
 
 
 

@@ -29,7 +29,7 @@ public interface ISinistriService
     //  IEnumerable<SinistriModel> GetSinistriByFiduciario(SinistroRequest username);
     Task<List<SinistriModel>> GetSinistriByFiduciario(SinistroRequest username);
 
- Task<SinistriModel>  GetSinistroID(SinistroRequest request);
+    Task<SinistriModel> GetSinistroID(SinistroRequest request);
     Task<List<SinistriModel>> Index();
     Task<SinistriModel> GetPraticalDetail2(SinistroRequest body);
 }
@@ -37,9 +37,10 @@ public class SinistriService : ISinistriService
 {
 
     public List<SinistriModel> _sinistriNode = new List<SinistriModel> { };
-
+    // dichiaro client che mi serve per fare la fetch dei dati
+    static HttpClient client = new HttpClient();
     // parametri sorta di database dichiarato come un array list  array da sostituire
-    
+
 
 
     private List<SinistriModel> sinistriFetch = new List<SinistriModel> { };
@@ -63,17 +64,19 @@ public class SinistriService : ISinistriService
 
 
     // sinistro by id   [HttpPost("sinistro")]
-    public async Task<SinistriModel>  GetSinistroID(SinistroRequest request)
+    public async Task<SinistriModel> GetSinistroID(SinistroRequest request)
 
     {
-        // System.Console.WriteLine("sinistri by fiduciario"+request.id);
+        System.Console.WriteLine("sinistri by fiduciario" + request.id);
         request.username = null;
         List<SinistriModel> sinistri = await Index();
+        System.Console.WriteLine("i sinistri sono " + sinistri.Count);
         SinistriModel sinistro = sinistri.FirstOrDefault(x => x.id == request.id);
 
-        System.Console.WriteLine("sinistro service" + sinistro);
+        System.Console.WriteLine("sinistro service" + sinistro.ToString());
 
         return sinistro;
+
     }
 
     // sinistri by username     [HttpPost("fiduciario")]
@@ -114,29 +117,46 @@ public class SinistriService : ISinistriService
 
 
     }
-    // all sinistri chiamata     [HttpGet]
+    // all sinistri chiamata 
+
     public async Task<List<SinistriModel>> Index()
     {
+        // dichiaro da dove fetch i dati
         string url = "http://localhost:3000/sinistri";
-        HttpClient client = new HttpClient();
         client.BaseAddress = new Uri(url);
-        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        var response = await client.GetAsync(url);
-
-        response.EnsureSuccessStatusCode();
-        string data = await response.Content.ReadAsStringAsync();
-        // System.Console.WriteLine(data);
-
-        Console.WriteLine("fatto");
-        //   = JsonConvert.DeserializeObject<List<SinistriModel>>(data);
-        // var sinistro =  JsonConvert.DeserializeObject<List<SinistriModel>>(data);
-        var prova = JsonConvert.DeserializeObject<List<SinistriModel>>(data);
-        // Console.WriteLine(prova + "  " + "prova");
-        for (int i = 0; i < prova.Count; i++)
+        client.DefaultRequestHeaders.Accept.Clear();
+        // gli dico che deve accettare file json 
+        client.DefaultRequestHeaders.Accept.Add(
+              new MediaTypeWithQualityHeaderValue("application/json")
+        );
+        try
         {
-            _sinistriNode.Add(prova[i]);
+          //  System.Console.WriteLine("sono nel try catch");
+            var response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            // mi salvo tutti i dati in una stringa 
+            string data = await response.Content.ReadAsStringAsync();
+            // converto in json
+            var  json = JsonConvert.DeserializeObject<List<SinistriModel>>(data);
+            for (int i=0; i <json.Count ; i++){
+                _sinistriNode.Add(json[i]);
+            }
+            return _sinistriNode;
         }
-        System.Console.WriteLine(_sinistriNode.Count);
-        return _sinistriNode;
+        catch (Exception e)
+        {
+
+            System.Console.WriteLine("message di errore " + e);
+            return null;
+
+        }
+
+
     }
+
+
+
+
+
+
 }
