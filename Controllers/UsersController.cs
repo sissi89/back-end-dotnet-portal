@@ -11,7 +11,7 @@ using WebApi.Services;
 public class UsersController : Controller
 {
     private IUserService _userService;
-    private ISinistriService _sinistriService;
+   
 
     public UsersController(IUserService userService)
     {

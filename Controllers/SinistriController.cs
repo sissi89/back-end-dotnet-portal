@@ -13,7 +13,7 @@ public class SinistriController : ControllerBase
 {
 
     private ISinistriService _sinistriService;
-    private object message;
+    
 
     public SinistriController(ISinistriService sinistriService)
     {

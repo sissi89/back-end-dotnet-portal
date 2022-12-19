@@ -104,7 +104,7 @@ public class SinistriService : ISinistriService
     public async Task<SinistriModel> GetPraticalDetail2(SinistroRequest body)
     {
 
-        System.Console.WriteLine("id: sono nell getprtica controller  ");
+        System.Console.WriteLine("id: sono nell get pratica controller  ");
         // mi prendo tutti i sinistri 
         List<SinistriModel> sinistri = await Index();
         System.Console.WriteLine("sinistri  " + sinistri + " " + sinistri.Count);
@@ -144,10 +144,6 @@ public class SinistriService : ISinistriService
     {
 
         client.DefaultRequestHeaders.Accept.Clear();
-        client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-
-
         // gli dico che deve accettare file json 
         client.DefaultRequestHeaders.Accept.Add(
               new MediaTypeWithQualityHeaderValue("application/json")
@@ -156,7 +152,7 @@ public class SinistriService : ISinistriService
         {
             //  System.Console.WriteLine("sono nel try catch");
 
-            var response = await client.GetAsync(url);
+            var response = await client.GetAsync(this.url);
             response.EnsureSuccessStatusCode();
             // mi salvo tutti i dati in una stringa 
             string data = await response.Content.ReadAsStringAsync();

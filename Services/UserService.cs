@@ -18,12 +18,12 @@ public interface IUserService
 
 public class UserService : IUserService
 {
-    // database fake
+    // legenda 1 Operatore 2 fiduciario
     private List<User> _users = new List<User>
     {
-        new User { id = 1,  role=1,  Username = "Operatore", Password = "Operatore" }, // operatore sogesa
-        new User { id = 2,  role=2,   Username = "0001", Password = "123456" }, // fiduciario
-        new User { id = 3,  role=2,   Username = "0002", Password = "123456" }
+        new User { id = 1,  role=1,  Username = "Operatore", Password = "Operatore", name = "Operatore"}, // operatore sogesa
+        new User { id = 2,  role=2,   Username = "0001", Password = "123456", name = "Rossi" }, // fiduciario
+        new User { id = 3,  role=2,   Username = "0002", Password = "123456" , name = "Bianchi"}
     };
 
     private readonly AppSettings _appSettings;

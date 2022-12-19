@@ -9,6 +9,8 @@ public class User
    public int role {get; set;}
     public string Username { get; set; }
 
-    [JsonIgnore]
+    public string name {get;set;}
+ 
+    [JsonIgnore] // cosi la password non è visibile dalla chaiata get user
     public string Password { get; set; }
 }
