@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\WebApi.csproj": {}
+    "C:\\Users\\Silvana.mazzaglia\\Desktop\\PortaleAngularDotnet\\back-end-dotnet-portal\\WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\WebApi.csproj": {
+    "C:\\Users\\Silvana.mazzaglia\\Desktop\\PortaleAngularDotnet\\back-end-dotnet-portal\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\Silvana.mazzaglia\\Desktop\\PortaleAngularDotnet\\back-end-dotnet-portal\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\WebApi.csproj",
-        "packagesPath": "C:\\Users\\operatore\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\operatore\\Desktop\\PortaleFiduciari\\back-end-dotnet-portal\\obj\\",
+        "projectPath": "C:\\Users\\Silvana.mazzaglia\\Desktop\\PortaleAngularDotnet\\back-end-dotnet-portal\\WebApi.csproj",
+        "packagesPath": "C:\\Users\\Silvana.mazzaglia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Silvana.mazzaglia\\Desktop\\PortaleAngularDotnet\\back-end-dotnet-portal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\operatore\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Silvana.mazzaglia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -76,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

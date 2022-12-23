@@ -139,3 +139,95 @@ C:\Users\operatore\Desktop\PortaleFiduciari\back-end-dotnet-portal\bin\Debug\net
 C:\Users\operatore\Desktop\PortaleFiduciari\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.Generation.AspNetCore.dll
 C:\Users\operatore\Desktop\PortaleFiduciari\back-end-dotnet-portal\bin\Debug\net6.0\YamlDotNet.dll
 C:\Users\operatore\Desktop\PortaleFiduciari\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\appsettings.json
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\omnisharp.json
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\WebApi.exe
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\WebApi.deps.json
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\WebApi.runtimeconfig.json
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\WebApi.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\WebApi.pdb
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\Namotion.Reflection.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\NJsonSchema.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\NJsonSchema.Yaml.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.Annotations.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.AspNetCore.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.Core.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.Core.Yaml.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.Generation.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.Generation.AspNetCore.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\bin\Debug\net6.0\YamlDotNet.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.csproj.AssemblyReference.cache
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.AssemblyInfoInputs.cache
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.AssemblyInfo.cs
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.csproj.CoreCompileInputs.cache
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets\msbuild.WebApi.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets\msbuild.build.WebApi.props
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.WebApi.props
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.WebApi.props
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\scopedcss\bundle\WebApi.styles.css
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.csproj.CopyComplete
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\refint\WebApi.dll
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.pdb
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.genruntimeconfig.cache
+C:\Users\Silvana.mazzaglia\Desktop\back end Silvana\back-end-dotnet-portal\obj\Debug\net6.0\ref\WebApi.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\appsettings.json
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\omnisharp.json
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\WebApi.exe
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\WebApi.deps.json
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\WebApi.runtimeconfig.json
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\WebApi.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\WebApi.pdb
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\Namotion.Reflection.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\NJsonSchema.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\NJsonSchema.Yaml.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.Annotations.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.AspNetCore.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.Core.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.Core.Yaml.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.Generation.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\NSwag.Generation.AspNetCore.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\bin\Debug\net6.0\YamlDotNet.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.csproj.AssemblyReference.cache
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.AssemblyInfoInputs.cache
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.AssemblyInfo.cs
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.csproj.CoreCompileInputs.cache
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets\msbuild.WebApi.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets\msbuild.build.WebApi.props
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.WebApi.props
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.WebApi.props
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\scopedcss\bundle\WebApi.styles.css
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.csproj.CopyComplete
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\refint\WebApi.dll
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.pdb
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\WebApi.genruntimeconfig.cache
+C:\Users\Silvana.mazzaglia\Desktop\PortaleAngularDotnet\back-end-dotnet-portal\obj\Debug\net6.0\ref\WebApi.dll

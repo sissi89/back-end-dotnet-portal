@@ -2,7 +2,11 @@
 using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+/*connection per database*/
+/*
 
+builder.Services.AddDbContext<MvcMovieContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext")));*/
 // aggiungo i servzi per le chiamate
 {
     var services = builder.Services;
@@ -13,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
     services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
     // libreria Ng
     services.AddSwaggerDocument();
-    // aggiungo i controller
+    // aggiungo i services 
    services.AddScoped<IUserService, UserService>();
 
    services.AddScoped<ISinistriService, SinistriService>();
@@ -43,4 +47,8 @@ app.UseDeveloperExceptionPage();
 }
   
 app.Run("http://localhost:4000");
-
+/* in appsettings.json
+"ConnectionStrings": {
+  "MvcMovieContext": "Data Source=MvcMovie.db"
+}
+*/
