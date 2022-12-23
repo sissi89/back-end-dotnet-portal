@@ -136,7 +136,12 @@ var result = _sinistriService.getDocument(url);
 return File(result.Result,"application/pdf");
 
 }
-    
+// sinistri by fiduciario
+[HttpGet("fiduciario/{start}/{end}/{perito}")]   
+public  IActionResult getSinistriPerito(string start, string end, string perito){
+      var incarico =  _sinistriService.getSinistriByFiduciario(start,end,perito);
+    return Ok(incarico);
+}
     
 
 

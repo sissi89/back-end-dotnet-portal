@@ -36,7 +36,7 @@ public interface ISinistriService
 
     // 
     Task<SinistriModel[]> getSinistriByDateFixed();
-    Task<SinistriFiduciario[]> getSinistribyFiduciario(string fiduciario);
+     Task<SinistriFiduciario[]> getSinistribyFiduciario(string fiduciario); 
     Task<List<SinistriModel>> getFakeSinistri();
     Task<SinistriModel[]> getSinistriDate(string start, string end);
      Task<Detail>getDettail(string IdInc);
@@ -44,6 +44,7 @@ Task<Doc[]> getDocumentsIncarico(string idInc);
     Task<SinistriModel[]> getSinistriByFiduciarioFixed();
 
 Task<byte[]> getDocument(string url);
+Task<SinistriModel[]> getSinistriByFiduciario(string start, string end, string perito);
 }
 public class SinistriService : ISinistriService
 {
@@ -218,6 +219,42 @@ public class SinistriService : ISinistriService
         }
 
 
+    }
+    // ge sinistri by fiduciario 
+    public async Task<SinistriModel[]> getSinistriByFiduciario(string start, string end, string perito){
+        string url = "https://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=" + start + "&end=" + end;
+         if (client.BaseAddress == null)
+        {
+            client.BaseAddress = new Uri(url);
+            var sinistri =  JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
+            //item => item.fiduciario == body.username
+            SinistriModel[] sinistriByPerito = {}; 
+        for(int i =0;i < sinistri.Length; i++){
+            if(sinistri[i].nomePer == perito){
+                sinistriByPerito.Append(sinistri[i]);
+            }else{
+                return null;
+            }
+        }
+           return sinistriByPerito;
+
+        }
+        else
+       {
+           
+            var sinistri =  JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
+            //item => item.fiduciario == body.username
+            SinistriModel[] sinistriByPerito = {}; 
+        for(int i =0;i < sinistri.Length; i++){
+            if(sinistri[i].nomePer == perito){
+                sinistriByPerito.Append(sinistri[i]);
+            }else{
+                return null;
+            }
+        }
+           return sinistriByPerito;
+
+        }
     }
     // get dowloand documento del id incarico
 

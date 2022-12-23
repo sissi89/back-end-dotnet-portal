@@ -22,7 +22,7 @@ public class UserService : IUserService
     private List<User> _users = new List<User>
     {
         new User { id = 1,  role=1,  Username = "Operatore", Password = "Operatore", name = "Operatore"}, // operatore sogesa
-        new User { id = 2,  role=2,   Username = "0001", Password = "123456", name = "Rossi" }, // fiduciario
+        new User { id = 2,  role=2,   Username = "CREMONA STIME SRL - ZUCCHELLI", Password = "123456", name = "Rossi" }, // fiduciario
         new User { id = 3,  role=2,   Username = "0002", Password = "123456" , name = "Bianchi"}
     };
 
