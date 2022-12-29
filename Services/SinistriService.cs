@@ -190,7 +190,7 @@ public class SinistriService : ISinistriService
      // get dettaglio singola pratica
      public async Task<Detail>getDettail(string IdInc){
 
-        string url ="https://webapp.sogesa.net/portale/jarvis.php?do=incarico&idincarico="+IdInc;
+        string url ="http://webapp.sogesa.net/portale/jarvis.php?do=incarico&idincarico="+IdInc;
         if (client.BaseAddress == null)
         {
             client.BaseAddress = new Uri(url);
@@ -206,7 +206,7 @@ public class SinistriService : ISinistriService
     public async Task<SinistriModel[]> getSinistriDate(string start, string end)
     {
         // https://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=2022-12-20&end=2022-12-21
-        string url = "https://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=" + start + "&end=" + end;
+        string url = "http://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=" + start + "&end=" + end;
         // client.BaseAddress = new Uri(url);
         if (client.BaseAddress == null)
         {
@@ -222,11 +222,13 @@ public class SinistriService : ISinistriService
     }
     // ge sinistri by fiduciario 
     public async Task<SinistriModel[]> getSinistriByFiduciario(string start, string end, string perito){
-        string url = "https://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=" + start + "&end=" + end;
+        string url = "http://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=" + start + "&end=" + end;
+
          if (client.BaseAddress == null)
         {
             client.BaseAddress = new Uri(url);
             var sinistri =  JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
+            System.Console.WriteLine(sinistri);
             //item => item.fiduciario == body.username
             SinistriModel[] sinistriByPerito = {}; 
         for(int i =0;i < sinistri.Length; i++){
@@ -258,7 +260,8 @@ public class SinistriService : ISinistriService
     }
     // get dowloand documento del id incarico
 
-    public async Task<byte[]> getDocument(string url){
+    public async Task<byte[]> getDocument(string idInc){
+         string url = "http://webapp.sogesa.net/portale/jarvis-allegato.php?id="+idInc;
         var result = await client.GetAsync(url);
         return result.IsSuccessStatusCode ? await result.Content.ReadAsByteArrayAsync(): null;
     }
@@ -313,7 +316,7 @@ public class SinistriService : ISinistriService
     public async Task<SinistriFiduciario[]> getSinistribyFiduciario(string fiduciario)
     {
         System.Console.WriteLine("sono nel service");
-        string url = "https://webapp.sogesa.net/portale/jarvis.php?do=incarichi&numsx=" + fiduciario;
+        string url = "http://webapp.sogesa.net/portale/jarvis.php?do=incarichi&numsx=" + fiduciario;
         if (client.BaseAddress == null)
         {
             client.BaseAddress = new Uri(url);
@@ -330,7 +333,7 @@ public class SinistriService : ISinistriService
     // Incarichi per Sx fisso
     public async Task<SinistriModel[]> getSinistriByFiduciarioFixed()
     {
-        string url = "https://webapp.sogesa.net/portale/jarvis.php?do=incarichi&numsx=0044587201670335665";
+        string url = "http://webapp.sogesa.net/portale/jarvis.php?do=incarichi&numsx=0044587201670335665";
         if (client.BaseAddress == null)
         {
             client.BaseAddress = new Uri(url);
@@ -344,7 +347,7 @@ public class SinistriService : ISinistriService
     // get sinistri by data fixed in url per prova Tutti i SX ( per data ):
     public async Task<SinistriModel[]> getSinistriByDateFixed()
     {
-        string url = "https://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=2022-12-19&end=2022-12-20";
+        string url = "http://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=2022-12-19&end=2022-12-20";
 
         if (client.BaseAddress == null)
         {
@@ -371,6 +374,7 @@ public class SinistriService : ISinistriService
           //  System.Console.WriteLine("sono nel try catch");
 
             var response = await client.GetAsync(url);
+         //   System.Console.WriteLine("response"+ response);
             response.EnsureSuccessStatusCode();
             // mi salvo tutti i dati in una stringa e return in modo tale che posso variare il tipo ad ogni metodo
           

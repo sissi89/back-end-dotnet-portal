@@ -122,17 +122,10 @@ public async Task<IActionResult> getDocumentsIncarico(string idInc){
 // dowloand documento
 [HttpGet("documents/singolo/{idInc}")]
 public IActionResult getSingleDocument(string idInc){
-  /*[HttpGet]
-      var result = DownloadExtention.GetUrlContent(url);
-         if (result != null)
-         { 
-             return File(result.Result, "image/png", "test.jpg");
-         }
-         return Ok("file is not exist");
-     }
- }*/
- string url = "https://webapp.sogesa.net/portale/jarvis-allegato.php?id="+idInc;
-var result = _sinistriService.getDocument(url);
+
+
+
+var result = _sinistriService.getDocument(idInc);
 return File(result.Result,"application/pdf");
 
 }
@@ -140,6 +133,7 @@ return File(result.Result,"application/pdf");
 [HttpGet("fiduciario/{start}/{end}/{perito}")]   
 public  IActionResult getSinistriPerito(string start, string end, string perito){
       var incarico =  _sinistriService.getSinistriByFiduciario(start,end,perito);
+      System.Console.WriteLine("'console'",incarico);
     return Ok(incarico);
 }
     
