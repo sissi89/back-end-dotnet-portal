@@ -35,7 +35,6 @@ public interface ISinistriService
     // get all sinistri da data fissa
 
     // 
-    Task<SinistriModel[]> getSinistriByDateFixed();
      Task<SinistriFiduciario[]> getSinistribyFiduciario(string fiduciario); 
     Task<List<SinistriModel>> getFakeSinistri();
     Task<SinistriModel[]> getSinistriDate(string start, string end);
@@ -63,6 +62,205 @@ public class SinistriService : ISinistriService
     {
         _appSettings = appSettings.Value;
     }
+
+     // get dettaglio singola pratica
+     public async Task<Detail>getDettail(string IdInc){
+
+        string url ="http://webapp.sogesa.net/portale/jarvis.php?do=incarico&idincarico="+IdInc;
+        if (client.BaseAddress == null)
+        {
+            client.BaseAddress = new Uri(url);
+            return JsonConvert.DeserializeObject<Detail>(await call(url));
+        }
+        else
+        {
+            return JsonConvert.DeserializeObject<Detail>(await call(url));
+        }
+     }
+
+    // get sinistri by data optionale Tutti i SX ( per data ):
+    public async Task<SinistriModel[]> getSinistriDate(string start, string end)
+    {
+        // https://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=2022-12-20&end=2022-12-21
+        string url = "http://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=" + start + "&end=" + end;
+        // client.BaseAddress = new Uri(url);
+        if (client.BaseAddress == null)
+        {
+            client.BaseAddress = new Uri(url);
+            return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
+        }
+        else
+        {
+            return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
+        }
+
+
+    }
+    // ge sinistri by fiduciario 
+    public async Task<SinistriModel[]> getSinistriByFiduciario(string start, string end, string perito){
+        Console.WriteLine("sono nel controller");
+        string url = "http://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=" + start + "&end=" + end;
+
+         if (client.BaseAddress == null)
+        {
+            client.BaseAddress = new Uri(url);
+            var sinistri =  JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
+            System.Console.WriteLine(sinistri);
+            //item => item.fiduciario == body.username
+            SinistriModel[] sinistriByPerito = {}; 
+        for(int i =0;i < sinistri.Length; i++){
+            if(sinistri[i].codPer == perito){
+                sinistriByPerito.Append(sinistri[i]);
+            }else{
+                return null;
+            }
+        }
+           return sinistriByPerito;
+
+        }
+        else
+       {
+           
+            var sinistri =  JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
+            //item => item.fiduciario == body.username
+            SinistriModel[] sinistriByPerito = {}; 
+        for(int i =0;i < sinistri.Length; i++){
+            if(sinistri[i].nomePer == perito){
+                sinistriByPerito.Append(sinistri[i]);
+            }else{
+                return null;
+            }
+        }
+           return sinistriByPerito;
+
+        }
+    }
+    // get dowloand documento del id incarico
+
+    public async Task<byte[]> getDocument(string idInc){
+         string url = "http://webapp.sogesa.net/portale/jarvis-allegato.php?id="+idInc;
+        var result = await client.GetAsync(url);
+        return result.IsSuccessStatusCode ? await result.Content.ReadAsByteArrayAsync(): null;
+    }
+    // get documenti di un incarico 
+    public async Task<Doc[]> getDocumentsIncarico(string idInc){
+      //  System.Console.WriteLine("sono nel service documents");
+        string url ="http://webapp.sogesa.net/portale/jarvis.php?do=allegati&idincarico="+idInc;
+        var json = JsonConvert.DeserializeObject<Doc[]>(await call(url));
+        
+        if(client.BaseAddress == null){
+            client.BaseAddress = new Uri(url);
+          //  Console.WriteLine("'json if '");
+          if(json != null){
+            Console.WriteLine("il json non è null");
+                return json;
+          }else{
+               Console.WriteLine("il json  è null");
+                return json ;
+          }
+           
+            
+        }else {
+          //    Console.WriteLine("'json else '");
+          if(json != null){
+            Console.WriteLine("il json non è null");
+                return json;
+          }else{
+               Console.WriteLine("il json  è null");
+                return json ;
+          }
+          
+          
+        }
+    }
+
+    
+    // get fake sinistri
+    public async Task<List<SinistriModel>> getFakeSinistri()
+    {
+        string url = "http://localhost:3000/sinistri";
+        if (client.BaseAddress == null)
+        {
+            client.BaseAddress = new Uri(url);
+            return JsonConvert.DeserializeObject<List<SinistriModel>>(await call(url));
+        }
+        else
+        {
+            return JsonConvert.DeserializeObject<List<SinistriModel>>(await call(url));
+        }
+    }
+    // incarichi per sx fisso 
+    public async Task<SinistriFiduciario[]> getSinistribyFiduciario(string fiduciario)
+    {
+        System.Console.WriteLine("sono nel service");
+        string url = "http://webapp.sogesa.net/portale/jarvis.php?do=incarichi&numsx=" + fiduciario;
+        if (client.BaseAddress == null)
+        {
+            client.BaseAddress = new Uri(url);
+            var tmp = await call(url);
+            //Console.WriteLine(tmp);
+            return JsonConvert.DeserializeObject<SinistriFiduciario[]>(await call(url));
+        }
+        else
+        {
+            return JsonConvert.DeserializeObject<SinistriFiduciario[]>(await call(url));
+        }
+    }
+    // get sinistri per fiduciario nomePer fixed con un fiduciario
+    // Incarichi per Sx fisso
+    public async Task<SinistriModel[]> getSinistriByFiduciarioFixed()
+    {
+        string url = "http://webapp.sogesa.net/portale/jarvis.php?do=incarichi&numsx=0044587201670335665";
+        if (client.BaseAddress == null)
+        {
+            client.BaseAddress = new Uri(url);
+            return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
+        }
+        else
+        {
+            return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
+        }
+    }
+    // get sinistri by data fixed in url per prova Tutti i SX ( per data ):
+ 
+    // simulare una select come fare delle select con database
+
+    public async Task<string> call(string url)
+    {
+        client.DefaultRequestHeaders.Accept.Clear();
+        // gli dico che deve accettare file json 
+        client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json")
+        );
+        try
+        {
+          //  System.Console.WriteLine("sono nel try catch");
+
+            var response = await client.GetAsync(url);
+         //   System.Console.WriteLine("response"+ response);
+            response.EnsureSuccessStatusCode();
+            // mi salvo tutti i dati in una stringa e return in modo tale che posso variare il tipo ad ogni metodo
+          string stringa =  await response.Content.ReadAsStringAsync();
+            System.Console.WriteLine("'prova'"+stringa);
+            return stringa;
+            // converto in json
+            //System.Console.WriteLine("data: "+data);
+            //var json = JsonConvert.DeserializeObject<SinistriModel[]>(data.);
+            //return json;
+        }
+        catch (Exception e)
+        {
+
+           System.Console.WriteLine("message di errore " + e);
+            return null;
+
+        }
+
+
+
+
+    }
+
     // tutti i sinistri con ruolo operatore
     /* public IEnumerable<SinistriModel> GetAll()
     //public  async Task<List<SinistriModel>> GetAll()
@@ -187,217 +385,6 @@ public class SinistriService : ISinistriService
 
 
      } */
-     // get dettaglio singola pratica
-     public async Task<Detail>getDettail(string IdInc){
-
-        string url ="http://webapp.sogesa.net/portale/jarvis.php?do=incarico&idincarico="+IdInc;
-        if (client.BaseAddress == null)
-        {
-            client.BaseAddress = new Uri(url);
-            return JsonConvert.DeserializeObject<Detail>(await call(url));
-        }
-        else
-        {
-            return JsonConvert.DeserializeObject<Detail>(await call(url));
-        }
-     }
-
-    // get sinistri by data optionale Tutti i SX ( per data ):
-    public async Task<SinistriModel[]> getSinistriDate(string start, string end)
-    {
-        // https://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=2022-12-20&end=2022-12-21
-        string url = "http://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=" + start + "&end=" + end;
-        // client.BaseAddress = new Uri(url);
-        if (client.BaseAddress == null)
-        {
-            client.BaseAddress = new Uri(url);
-            return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
-        }
-        else
-        {
-            return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
-        }
-
-
-    }
-    // ge sinistri by fiduciario 
-    public async Task<SinistriModel[]> getSinistriByFiduciario(string start, string end, string perito){
-        string url = "http://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=" + start + "&end=" + end;
-
-         if (client.BaseAddress == null)
-        {
-            client.BaseAddress = new Uri(url);
-            var sinistri =  JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
-            System.Console.WriteLine(sinistri);
-            //item => item.fiduciario == body.username
-            SinistriModel[] sinistriByPerito = {}; 
-        for(int i =0;i < sinistri.Length; i++){
-            if(sinistri[i].nomePer == perito){
-                sinistriByPerito.Append(sinistri[i]);
-            }else{
-                return null;
-            }
-        }
-           return sinistriByPerito;
-
-        }
-        else
-       {
-           
-            var sinistri =  JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
-            //item => item.fiduciario == body.username
-            SinistriModel[] sinistriByPerito = {}; 
-        for(int i =0;i < sinistri.Length; i++){
-            if(sinistri[i].nomePer == perito){
-                sinistriByPerito.Append(sinistri[i]);
-            }else{
-                return null;
-            }
-        }
-           return sinistriByPerito;
-
-        }
-    }
-    // get dowloand documento del id incarico
-
-    public async Task<byte[]> getDocument(string idInc){
-         string url = "http://webapp.sogesa.net/portale/jarvis-allegato.php?id="+idInc;
-        var result = await client.GetAsync(url);
-        return result.IsSuccessStatusCode ? await result.Content.ReadAsByteArrayAsync(): null;
-    }
-    // get documenti di un incarico 
-    public async Task<Doc[]> getDocumentsIncarico(string idInc){
-      //  System.Console.WriteLine("sono nel service documents");
-        string url ="http://webapp.sogesa.net/portale/jarvis.php?do=allegati&idincarico="+idInc;
-        var json = JsonConvert.DeserializeObject<Doc[]>(await call(url));
-        
-        if(client.BaseAddress == null){
-            client.BaseAddress = new Uri(url);
-          //  Console.WriteLine("'json if '");
-          if(json != null){
-            Console.WriteLine("il json non è null");
-                return json;
-          }else{
-               Console.WriteLine("il json  è null");
-                return json ;
-          }
-           
-            
-        }else {
-          //    Console.WriteLine("'json else '");
-          if(json != null){
-            Console.WriteLine("il json non è null");
-                return json;
-          }else{
-               Console.WriteLine("il json  è null");
-                return json ;
-          }
-          
-          
-        }
-    }
-
-    
-    // get fake sinistri
-    public async Task<List<SinistriModel>> getFakeSinistri()
-    {
-        string url = "http://localhost:3000/sinistri";
-        if (client.BaseAddress == null)
-        {
-            client.BaseAddress = new Uri(url);
-            return JsonConvert.DeserializeObject<List<SinistriModel>>(await call(url));
-        }
-        else
-        {
-            return JsonConvert.DeserializeObject<List<SinistriModel>>(await call(url));
-        }
-    }
-    // incarichi per sx fisso 
-    public async Task<SinistriFiduciario[]> getSinistribyFiduciario(string fiduciario)
-    {
-        System.Console.WriteLine("sono nel service");
-        string url = "http://webapp.sogesa.net/portale/jarvis.php?do=incarichi&numsx=" + fiduciario;
-        if (client.BaseAddress == null)
-        {
-            client.BaseAddress = new Uri(url);
-            var tmp = await call(url);
-            //Console.WriteLine(tmp);
-            return JsonConvert.DeserializeObject<SinistriFiduciario[]>(await call(url));
-        }
-        else
-        {
-            return JsonConvert.DeserializeObject<SinistriFiduciario[]>(await call(url));
-        }
-    }
-    // get sinistri per fiduciario nomePer fixed con un fiduciario
-    // Incarichi per Sx fisso
-    public async Task<SinistriModel[]> getSinistriByFiduciarioFixed()
-    {
-        string url = "http://webapp.sogesa.net/portale/jarvis.php?do=incarichi&numsx=0044587201670335665";
-        if (client.BaseAddress == null)
-        {
-            client.BaseAddress = new Uri(url);
-            return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
-        }
-        else
-        {
-            return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
-        }
-    }
-    // get sinistri by data fixed in url per prova Tutti i SX ( per data ):
-    public async Task<SinistriModel[]> getSinistriByDateFixed()
-    {
-        string url = "http://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=2022-12-19&end=2022-12-20";
-
-        if (client.BaseAddress == null)
-        {
-            client.BaseAddress = new Uri(url);
-            //return await call(url);
-            return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
-        }
-        else
-        {
-            return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
-        }
-    }
-    // simulare una select come fare delle select con database
-
-    public async Task<string> call(string url)
-    {
-        client.DefaultRequestHeaders.Accept.Clear();
-        // gli dico che deve accettare file json 
-        client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json")
-        );
-        try
-        {
-          //  System.Console.WriteLine("sono nel try catch");
-
-            var response = await client.GetAsync(url);
-         //   System.Console.WriteLine("response"+ response);
-            response.EnsureSuccessStatusCode();
-            // mi salvo tutti i dati in una stringa e return in modo tale che posso variare il tipo ad ogni metodo
-          
-           // System.Console.WriteLine("'prova'"+prova);
-            return await response.Content.ReadAsStringAsync();
-            // converto in json
-            //System.Console.WriteLine("data: "+data);
-            //var json = JsonConvert.DeserializeObject<SinistriModel[]>(data.);
-            //return json;
-        }
-        catch (Exception e)
-        {
-
-           System.Console.WriteLine("message di errore " + e);
-            return null;
-
-        }
-
-
-
-
-    }
-
 
 
 

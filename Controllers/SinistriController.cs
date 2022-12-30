@@ -73,27 +73,9 @@ public class SinistriController : ControllerBase
         return Ok(incarichi);
     }
 
-// get sinistri fake
-    [HttpGet]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> getIndex(){
-    var incarichi = await _sinistriService.getFakeSinistri();
-    return Ok(incarichi);
-
-    }
-
-//  getSinistriByDateFixed() 
-
-    [HttpGet("sinistriDataFissa")]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task <IActionResult> getSinistriByDateFixed(){
-      //  System.Console.WriteLine("sono nel controller");
-
-        var incarichi = await _sinistriService.getSinistriByDateFixed();
 
 
-        return Ok(incarichi);
-    }
+
 
 //getSinistriDate(string start , string end)
    [HttpGet("{dataStart}/{dataEnd}")]
@@ -113,6 +95,7 @@ public async Task<IActionResult> getDettail(string idInc){
     return Ok(incarico);
 
 }
+//  Tutti i documenti per singolo incarico:
 [HttpGet("incarichi/documents/{idInc}")]
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<IActionResult> getDocumentsIncarico(string idInc){
@@ -130,7 +113,7 @@ return File(result.Result,"application/pdf");
 
 }
 // sinistri by fiduciario
-[HttpGet("fiduciario/{start}/{end}/{perito}")]   
+[HttpGet("fiduciario/{start}/{end}/")]   
 public  IActionResult getSinistriPerito(string start, string end, string perito){
       var incarico =  _sinistriService.getSinistriByFiduciario(start,end,perito);
       System.Console.WriteLine("'console'",incarico);
