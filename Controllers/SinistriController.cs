@@ -78,7 +78,7 @@ public class SinistriController : ControllerBase
 
 
 
-    //getSinistriDate(string start , string end)
+    //getSinistriDate(string start , string end) // 2 stringe
     [HttpGet("{dataStart}/{dataEnd}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> getAllSinistriWithDate(string dataStart, string dataEnd)
@@ -90,7 +90,8 @@ public class SinistriController : ControllerBase
 
 
     // get dettaglio singola pratica
-    [HttpGet("incarichi/{idInc}")]
+    [HttpGet("incarichi/{idInc}")] // idInc
+    [ProducesResponseType(typeof(SinistriModel), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> getDettail(string idInc)
     {
@@ -102,7 +103,8 @@ public class SinistriController : ControllerBase
         else
         {
           // var result = new ObjectResult(new { error = "IdInc non inserito" });
-            return StatusCode(404, "IdInc non trovato");
+           // return StatusCode(404, "IdInc non trovato");
+            return BadRequest();
         }
 
 
@@ -110,7 +112,7 @@ public class SinistriController : ControllerBase
 
     }
     //  Tutti i documenti per singolo incarico:
-    [HttpGet("incarichi/documents/{idInc}")]
+    [HttpGet("incarichi/documents/{idInc}")] 
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> getDocumentsIncarico(string idInc)
     {

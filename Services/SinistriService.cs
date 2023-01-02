@@ -154,7 +154,7 @@ public class SinistriService : ISinistriService
             client.BaseAddress = new Uri(url);
           //  Console.WriteLine("'json if '");
           if(json != null){
-            Console.WriteLine("il json non è null");
+         //   Console.WriteLine("il json non è null");
                 return json;
           }else{
                Console.WriteLine("il json  è null");
