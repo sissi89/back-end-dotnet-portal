@@ -43,7 +43,7 @@ Task<Doc[]> getDocumentsIncarico(string idInc);
     Task<SinistriModel[]> getSinistriByFiduciarioFixed();
 
 Task<byte[]> getDocument(string url);
-Task<SinistriModel[]> getSinistriByFiduciario(string start, string end, string perito);
+Task<SinistriModel[]> getSinistriByFiduciario( string start, string end,string perito);
 }
 public class SinistriService : ISinistriService
 {
@@ -96,10 +96,11 @@ public class SinistriService : ISinistriService
 
 
     }
-    // ge sinistri by fiduciario 
-    public async Task<SinistriModel[]> getSinistriByFiduciario(string start, string end, string perito){
+    // get sinistri by fiduciario non funziona
+    public async Task<SinistriModel[]> getSinistriByFiduciario( string start, string end,string perito){
         Console.WriteLine("sono nel controller");
         string url = "http://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=" + start + "&end=" + end;
+        Console.WriteLine("perito prima",perito);
 
          if (client.BaseAddress == null)
         {
@@ -110,12 +111,13 @@ public class SinistriService : ISinistriService
             SinistriModel[] sinistriByPerito = {}; 
         for(int i =0;i < sinistri.Length; i++){
             if(sinistri[i].codPer == perito){
+                    Console.WriteLine("perito",sinistri[i].codPer);
                 sinistriByPerito.Append(sinistri[i]);
             }else{
-                return null;
+                 
             }
         }
-           return sinistriByPerito;
+           return sinistri;
 
         }
         else
@@ -131,7 +133,7 @@ public class SinistriService : ISinistriService
                 return null;
             }
         }
-           return sinistriByPerito;
+           return sinistri;
 
         }
     }
@@ -189,11 +191,11 @@ public class SinistriService : ISinistriService
             return JsonConvert.DeserializeObject<List<SinistriModel>>(await call(url));
         }
     }
-    // incarichi per sx fisso 
-    public async Task<SinistriFiduciario[]> getSinistribyFiduciario(string fiduciario)
+    // incarichi per sx 
+    public async Task<SinistriFiduciario[]> getSinistribyFiduciario(string numSx)
     {
         System.Console.WriteLine("sono nel service");
-        string url = "http://webapp.sogesa.net/portale/jarvis.php?do=incarichi&numsx=" + fiduciario;
+        string url = "http://webapp.sogesa.net/portale/jarvis.php?do=incarichi&numsx=" + numSx;
         if (client.BaseAddress == null)
         {
             client.BaseAddress = new Uri(url);
@@ -206,7 +208,7 @@ public class SinistriService : ISinistriService
             return JsonConvert.DeserializeObject<SinistriFiduciario[]>(await call(url));
         }
     }
-    // get sinistri per fiduciario nomePer fixed con un fiduciario
+   
     // Incarichi per Sx fisso
     public async Task<SinistriModel[]> getSinistriByFiduciarioFixed()
     {
@@ -221,9 +223,9 @@ public class SinistriService : ISinistriService
             return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
         }
     }
-    // get sinistri by data fixed in url per prova Tutti i SX ( per data ):
+  
  
-    // simulare una select come fare delle select con database
+  
 
     public async Task<string> call(string url)
     {
@@ -241,7 +243,7 @@ public class SinistriService : ISinistriService
             response.EnsureSuccessStatusCode();
             // mi salvo tutti i dati in una stringa e return in modo tale che posso variare il tipo ad ogni metodo
           string stringa =  await response.Content.ReadAsStringAsync();
-            System.Console.WriteLine("'prova'"+stringa);
+           // System.Console.WriteLine("'prova'"+stringa);
             return stringa;
             // converto in json
             //System.Console.WriteLine("data: "+data);
