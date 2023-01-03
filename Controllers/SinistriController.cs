@@ -61,7 +61,7 @@ public class SinistriController : ControllerBase
           var sinistro = await _sinistriService.GetPraticalDetail2(body);
           return sinistro;
       }  */
-
+/* 
     [HttpGet("incarichiPer/{sinistro}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     //[]
@@ -72,7 +72,7 @@ public class SinistriController : ControllerBase
 
 
         return Ok(incarichi);
-    }
+    } */
 
 
 
@@ -127,7 +127,7 @@ public class SinistriController : ControllerBase
         return File(result.Result, "application/pdf");
 
     }
-    // sinistri by fiduciario
+    // sinistri by fiduciario non funziona
     [HttpGet("incarichi/fiduciario/{start}/{end}/{perito}")]
     public IActionResult getSinistriPerito(string start, string end, string perito)
     {

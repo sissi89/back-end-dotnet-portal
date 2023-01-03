@@ -3,10 +3,11 @@ using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 /*connection per database*/
-/*
 
+/* 
 builder.Services.AddDbContext<MvcMovieContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext")));*/
+    options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext"))); */
+
 // aggiungo i servzi per le chiamate
 {
     var services = builder.Services;
