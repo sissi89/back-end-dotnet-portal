@@ -117,6 +117,7 @@ public class SinistriService : ISinistriService
                  
             }
         }
+        Console.WriteLine("sinistri",sinistri);
            return sinistri;
 
         }

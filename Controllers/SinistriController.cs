@@ -61,72 +61,69 @@ public class SinistriController : ControllerBase
           var sinistro = await _sinistriService.GetPraticalDetail2(body);
           return sinistro;
       }  */
-/* 
-    [HttpGet("incarichiPer/{sinistro}")]
+
+    [HttpPost()]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    //[]
-    //getSinistribyFiduciario
-    public async Task<IActionResult> getIncarichi(string perito)
-    {
-        var incarichi = await _sinistriService.getSinistribyFiduciario(perito);
-
-
-        return Ok(incarichi);
-    } */
-
-
-
-
-
-    //getSinistriDate(string start , string end) // 2 stringe
-    [HttpGet("{dataStart}/{dataEnd}")]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> getAllSinistriWithDate(string dataStart, string dataEnd)
-    {
-        var incarichi = await _sinistriService.getSinistriDate(dataStart, dataEnd);
-        return Ok(incarichi);
-    }
-
-
-
-    // get dettaglio singola pratica
-    [HttpGet("incarichi/{idInc}")] // idInc
-    [ProducesResponseType(typeof(SinistriModel), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> getDettail(string idInc)
-    {
-        if (idInc != null)
-        {
-            var incarico = await _sinistriService.getDettail(idInc);
-            return Ok(incarico);
-        }
-        else
-        {
-          // var result = new ObjectResult(new { error = "IdInc non inserito" });
-           // return StatusCode(404, "IdInc non trovato");
+    public async Task<IActionResult> getAllSinistriWithDate([FromBody] SinistroRequest body){
+        if(body.start != null && body.end != null){
+            var incarichi = await _sinistriService.getSinistriDate(body.start, body.end);
+            if(incarichi.Length >0){
+                return Ok(incarichi);
+            }else{
+                return StatusCode(404,"Incarichi non trovati");
+            }
+        }else{
             return BadRequest();
         }
-
-
-
-
+        
     }
-    //  Tutti i documenti per singolo incarico:
-    [HttpGet("incarichi/documents/{idInc}")] 
+    [HttpPost("incarichi")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> getDocumentsIncarico(string idInc)
-    {
-        var documents = await _sinistriService.getDocumentsIncarico(idInc);
-        return Ok(documents);
+    public async Task<IActionResult> getDettail([FromBody] SinistroRequest body){
+        if(body.idInc != null){
+            var incarico = await _sinistriService.getDettail(body.idInc);
+            return Ok(incarico);
+        }else{
+            return StatusCode(404, "IdInc non trovato");
+           // return BadRequest();
+        }
+
     }
+
+
+    
+    //  Tutti i documenti per singolo incarico:
+
+    [HttpPost("incarichi/documents")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> getDocumentsIncarico([FromBody] SinistroRequest body)
+    {
+        if(body.idInc != null){
+            var documents = await _sinistriService.getDocumentsIncarico(body.idInc);
+          /*   if(documents != null )
+            return Ok(documents); */
+          if(documents != null){
+            return Ok(documents);
+          }else{
+            return StatusCode(404,"idInc non trovato");
+          }
+        }else{
+            return BadRequest();
+        }
+    }
+    
+
     // dowloand documento
-    [HttpGet("documents/singolo/{idInc}")]
+     [HttpGet("documents/singolo/{idInc}")]
+     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult getSingleDocument(string idInc)
     {
          var result = _sinistriService.getDocument(idInc);
         return File(result.Result, "application/pdf");
 
-    }
+    } 
+    // da provare
+  
     // sinistri by fiduciario non funziona
     [HttpGet("incarichi/fiduciario/{start}/{end}/{perito}")]
     public IActionResult getSinistriPerito(string start, string end, string perito)
