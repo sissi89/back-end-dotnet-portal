@@ -1,4 +1,5 @@
-﻿using WebApi.Helpers;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApi.Helpers;
 using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,9 @@ builder.Services.AddDbContext<MvcMovieContext>(options =>
 
     // configure strongly typed settings object
     services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+    services.AddDbContext<DataContext>(options => {
+    options.UseSqlServer("parametri dentro appsetting.json");
+});
     // libreria Ng
     services.AddSwaggerDocument();
     // aggiungo i services 
@@ -23,6 +27,7 @@ builder.Services.AddDbContext<MvcMovieContext>(options =>
 
    services.AddScoped<ISinistriService, SinistriService>();
     services.AddHttpContextAccessor();
+
 }
 
 var app = builder.Build();

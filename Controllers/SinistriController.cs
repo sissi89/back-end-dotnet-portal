@@ -133,7 +133,18 @@ public class SinistriController : ControllerBase
         return Ok(incarico);
     }
 
-
+// allIncarichi 
+/* [HttpGet]
+    public IActionResult GetAll()
+    {
+        var users = _userService.GetAll();
+        return Ok(users);
+    } */
+[HttpGet("incarichi2")]
+public IActionResult getIncarichi(){
+    var incarichi =_sinistriService.GetAll();
+    return Ok(incarichi);
+}
 
 }
 

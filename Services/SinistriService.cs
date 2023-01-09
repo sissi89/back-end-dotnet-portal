@@ -22,6 +22,7 @@ using System.Text.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using System.Net.Http.Headers;
 
+
 public interface ISinistriService
 {
     /*   IEnumerable<SinistriModel> GetAll();
@@ -35,18 +36,22 @@ public interface ISinistriService
     // get all sinistri da data fissa
 
     // 
-     Task<SinistriFiduciario[]> getSinistribyFiduciario(string fiduciario); 
+    Task<SinistriFiduciario[]> getSinistribyFiduciario(string fiduciario);
     Task<List<SinistriModel>> getFakeSinistri();
     Task<SinistriModel[]> getSinistriDate(string start, string end);
-     Task<Detail>getDettail(string IdInc);
-Task<Doc[]> getDocumentsIncarico(string idInc);
+    Task<Detail> getDettail(string IdInc);
+    Task<Doc[]> getDocumentsIncarico(string idInc);
     Task<SinistriModel[]> getSinistriByFiduciarioFixed();
 
-Task<byte[]> getDocument(string url);
-Task<SinistriModel[]> getSinistriByFiduciario( string start, string end,string perito);
+    Task<byte[]> getDocument(string url);
+   
+    Task<SinistriModel[]> getSinistriByFiduciario(string start, string end, string perito);
+    // api da database
+    IEnumerable<Incarichi> GetAll();
 }
 public class SinistriService : ISinistriService
 {
+    private DataContext _context;
 
     public List<SinistriModel> _sinistriNode = new List<SinistriModel> { };
     // dichiaro client che mi serve per fare la fetch dei dati
@@ -57,16 +62,18 @@ public class SinistriService : ISinistriService
 
     private List<SinistriModel> sinistriFetch = new List<SinistriModel> { };
     private readonly AppSettings _appSettings;
-
-    public SinistriService(IOptions<AppSettings> appSettings)
+    
+    public SinistriService(IOptions<AppSettings> appSettings, DataContext context)
     {
         _appSettings = appSettings.Value;
+        _context = context;
     }
 
-     // get dettaglio singola pratica
-     public async Task<Detail>getDettail(string IdInc){
+    // get dettaglio singola pratica
+    public async Task<Detail> getDettail(string IdInc)
+    {
 
-        string url ="http://webapp.sogesa.net/portale/jarvis.php?do=incarico&idincarico="+IdInc;
+        string url = "http://webapp.sogesa.net/portale/jarvis.php?do=incarico&idincarico=" + IdInc;
         if (client.BaseAddress == null)
         {
             client.BaseAddress = new Uri(url);
@@ -76,7 +83,7 @@ public class SinistriService : ISinistriService
         {
             return JsonConvert.DeserializeObject<Detail>(await call(url));
         }
-     }
+    }
 
     // get sinistri by data optionale Tutti i SX ( per data ):
     public async Task<SinistriModel[]> getSinistriDate(string start, string end)
@@ -97,87 +104,107 @@ public class SinistriService : ISinistriService
 
     }
     // get sinistri by fiduciario non funziona
-    public async Task<SinistriModel[]> getSinistriByFiduciario( string start, string end,string perito){
+    public async Task<SinistriModel[]> getSinistriByFiduciario(string start, string end, string perito)
+    {
         Console.WriteLine("sono nel controller");
         string url = "http://webapp.sogesa.net/portale/jarvis-incarichi.php?id_filtro=0&start=" + start + "&end=" + end;
-        Console.WriteLine("perito prima",perito);
+        Console.WriteLine("perito prima", perito);
 
-         if (client.BaseAddress == null)
+        if (client.BaseAddress == null)
         {
             client.BaseAddress = new Uri(url);
-            var sinistri =  JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
+            var sinistri = JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
             System.Console.WriteLine(sinistri);
             //item => item.fiduciario == body.username
-            SinistriModel[] sinistriByPerito = {}; 
-        for(int i =0;i < sinistri.Length; i++){
-            if(sinistri[i].codPer == perito){
-                    Console.WriteLine("perito",sinistri[i].codPer);
-                sinistriByPerito.Append(sinistri[i]);
-            }else{
-                 
+            SinistriModel[] sinistriByPerito = { };
+            for (int i = 0; i < sinistri.Length; i++)
+            {
+                if (sinistri[i].codPer == perito)
+                {
+                    Console.WriteLine("perito", sinistri[i].codPer);
+                    sinistriByPerito.Append(sinistri[i]);
+                }
+                else
+                {
+
+                }
             }
-        }
-        Console.WriteLine("sinistri",sinistri);
-           return sinistri;
+            Console.WriteLine("sinistri", sinistri);
+            return sinistri;
 
         }
         else
-       {
-           
-            var sinistri =  JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
+        {
+
+            var sinistri = JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
             //item => item.fiduciario == body.username
-            SinistriModel[] sinistriByPerito = {}; 
-        for(int i =0;i < sinistri.Length; i++){
-            if(sinistri[i].nomePer == perito){
-                sinistriByPerito.Append(sinistri[i]);
-            }else{
-                return null;
+            SinistriModel[] sinistriByPerito = { };
+            for (int i = 0; i < sinistri.Length; i++)
+            {
+                if (sinistri[i].nomePer == perito)
+                {
+                    sinistriByPerito.Append(sinistri[i]);
+                }
+                else
+                {
+                    return null;
+                }
             }
-        }
-           return sinistri;
+            return sinistri;
 
         }
     }
     // get dowloand documento del id incarico
 
-    public async Task<byte[]> getDocument(string idInc){
-         string url = "http://webapp.sogesa.net/portale/jarvis-allegato.php?id="+idInc;
+    public async Task<byte[]> getDocument(string idInc)
+    {
+        string url = "http://webapp.sogesa.net/portale/jarvis-allegato.php?id=" + idInc;
         var result = await client.GetAsync(url);
-        return result.IsSuccessStatusCode ? await result.Content.ReadAsByteArrayAsync(): null;
+        return result.IsSuccessStatusCode ? await result.Content.ReadAsByteArrayAsync() : null;
     }
     // get documenti di un incarico 
-    public async Task<Doc[]> getDocumentsIncarico(string idInc){
-      //  System.Console.WriteLine("sono nel service documents");
-        string url ="http://webapp.sogesa.net/portale/jarvis.php?do=allegati&idincarico="+idInc;
+    public async Task<Doc[]> getDocumentsIncarico(string idInc)
+    {
+        //  System.Console.WriteLine("sono nel service documents");
+        string url = "http://webapp.sogesa.net/portale/jarvis.php?do=allegati&idincarico=" + idInc;
         var json = JsonConvert.DeserializeObject<Doc[]>(await call(url));
-        
-        if(client.BaseAddress == null){
+
+        if (client.BaseAddress == null)
+        {
             client.BaseAddress = new Uri(url);
-          //  Console.WriteLine("'json if '");
-          if(json != null){
-         //   Console.WriteLine("il json non è null");
+            //  Console.WriteLine("'json if '");
+            if (json != null)
+            {
+                //   Console.WriteLine("il json non è null");
                 return json;
-          }else{
-               Console.WriteLine("il json  è null");
-                return json ;
-          }
-           
-            
-        }else {
-          //    Console.WriteLine("'json else '");
-          if(json != null){
-            Console.WriteLine("il json non è null");
+            }
+            else
+            {
+                Console.WriteLine("il json  è null");
                 return json;
-          }else{
-               Console.WriteLine("il json  è null");
-                return json ;
-          }
-          
-          
+            }
+
+
+        }
+        else
+        {
+            //    Console.WriteLine("'json else '");
+            if (json != null)
+            {
+                Console.WriteLine("il json non è null");
+                return json;
+            }
+            else
+            {
+                Console.WriteLine("il json  è null");
+                return json;
+            }
+
+
         }
     }
 
-    
+
     // get fake sinistri
     public async Task<List<SinistriModel>> getFakeSinistri()
     {
@@ -209,7 +236,7 @@ public class SinistriService : ISinistriService
             return JsonConvert.DeserializeObject<SinistriFiduciario[]>(await call(url));
         }
     }
-   
+
     // Incarichi per Sx fisso
     public async Task<SinistriModel[]> getSinistriByFiduciarioFixed()
     {
@@ -224,9 +251,9 @@ public class SinistriService : ISinistriService
             return JsonConvert.DeserializeObject<SinistriModel[]>(await call(url));
         }
     }
-  
- 
-  
+
+
+
 
     public async Task<string> call(string url)
     {
@@ -237,14 +264,14 @@ public class SinistriService : ISinistriService
         );
         try
         {
-          //  System.Console.WriteLine("sono nel try catch");
+            //  System.Console.WriteLine("sono nel try catch");
 
             var response = await client.GetAsync(url);
-         //   System.Console.WriteLine("response"+ response);
+            //   System.Console.WriteLine("response"+ response);
             response.EnsureSuccessStatusCode();
             // mi salvo tutti i dati in una stringa e return in modo tale che posso variare il tipo ad ogni metodo
-          string stringa =  await response.Content.ReadAsStringAsync();
-           // System.Console.WriteLine("'prova'"+stringa);
+            string stringa = await response.Content.ReadAsStringAsync();
+            // System.Console.WriteLine("'prova'"+stringa);
             return stringa;
             // converto in json
             //System.Console.WriteLine("data: "+data);
@@ -254,7 +281,7 @@ public class SinistriService : ISinistriService
         catch (Exception e)
         {
 
-           System.Console.WriteLine("message di errore " + e);
+            System.Console.WriteLine("message di errore " + e);
             return null;
 
         }
@@ -263,7 +290,11 @@ public class SinistriService : ISinistriService
 
 
     }
-
+    /*------- api from Database ------ */
+    public IEnumerable<Incarichi> GetAll()
+    {
+        return _context.Incarichi;
+    }
     // tutti i sinistri con ruolo operatore
     /* public IEnumerable<SinistriModel> GetAll()
     //public  async Task<List<SinistriModel>> GetAll()
