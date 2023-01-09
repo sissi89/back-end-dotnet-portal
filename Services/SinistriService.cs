@@ -21,7 +21,8 @@ using System.Collections.Generic;
 using System.Text.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using System.Net.Http.Headers;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 
 public interface ISinistriService
 {
@@ -48,6 +49,7 @@ public interface ISinistriService
     Task<SinistriModel[]> getSinistriByFiduciario(string start, string end, string perito);
     // api da database
     IEnumerable<Incarichi> GetAll();
+    IEnumerable<Incarichi> getAll();
 }
 public class SinistriService : ISinistriService
 {
@@ -269,6 +271,7 @@ public class SinistriService : ISinistriService
             var response = await client.GetAsync(url);
             //   System.Console.WriteLine("response"+ response);
             response.EnsureSuccessStatusCode();
+          
             // mi salvo tutti i dati in una stringa e return in modo tale che posso variare il tipo ad ogni metodo
             string stringa = await response.Content.ReadAsStringAsync();
             // System.Console.WriteLine("'prova'"+stringa);
@@ -295,6 +298,14 @@ public class SinistriService : ISinistriService
     {
         return _context.Incarichi;
     }
+   public IEnumerable<Incarichi> getAll(){
+    FormattableString sql = $"SELECT * FROM [Incarichi_Table]";
+    System.Console.WriteLine("sql",sql);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+    var incarichi =  _context.Incarichi.FromSql(sql);
+  incarichi.Count();
+    return  incarichi;
+   }
+   
     // tutti i sinistri con ruolo operatore
     /* public IEnumerable<SinistriModel> GetAll()
     //public  async Task<List<SinistriModel>> GetAll()

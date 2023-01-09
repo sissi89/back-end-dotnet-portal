@@ -132,17 +132,12 @@ public class SinistriController : ControllerBase
         System.Console.WriteLine("'console'", incarico);
         return Ok(incarico);
     }
-
+/*----- api from database ---- */
 // allIncarichi 
-/* [HttpGet]
-    public IActionResult GetAll()
-    {
-        var users = _userService.GetAll();
-        return Ok(users);
-    } */
+
 [HttpGet("incarichi2")]
 public IActionResult getIncarichi(){
-    var incarichi =_sinistriService.GetAll();
+    var incarichi =_sinistriService.getAll();
     return Ok(incarichi);
 }
 
