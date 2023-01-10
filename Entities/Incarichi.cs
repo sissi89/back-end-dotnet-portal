@@ -5,6 +5,8 @@ using System.ComponentModel.DataAnnotations;
 public class Incarichi {
  
     [Key]
+    
+    public long id {get;set;}
     public string idIncarico {get;set;}
     public string codiceAniaCompagnia {get;set;}
     public DateTime dataSinistro {get;set;}

@@ -7,6 +7,8 @@ using WebApi.Entities;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 {
+    public string Role { get; set; }
+
     public void OnAuthorization(AuthorizationFilterContext context)
     {
         var user = (User)context.HttpContext.Items["User"];

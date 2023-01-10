@@ -18,6 +18,7 @@ public class SinistriController : ControllerBase
     public SinistriController(ISinistriService sinistriService)
     {
         _sinistriService = sinistriService;
+       
 
     }
     /*   // get tutti gli i servizi
@@ -136,6 +137,7 @@ public class SinistriController : ControllerBase
 // allIncarichi 
 
 [HttpGet("incarichi2")]
+
 public IActionResult getIncarichi(){
     var incarichi =_sinistriService.getAll();
     return Ok(incarichi);

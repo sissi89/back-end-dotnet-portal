@@ -64,7 +64,7 @@ public class SinistriService : ISinistriService
 
     private List<SinistriModel> sinistriFetch = new List<SinistriModel> { };
     private readonly AppSettings _appSettings;
-    
+   // private readonly IMapper _mapper;
     public SinistriService(IOptions<AppSettings> appSettings, DataContext context)
     {
         _appSettings = appSettings.Value;
@@ -306,130 +306,7 @@ public class SinistriService : ISinistriService
     return  incarichi;
    }
    
-    // tutti i sinistri con ruolo operatore
-    /* public IEnumerable<SinistriModel> GetAll()
-    //public  async Task<List<SinistriModel>> GetAll()
-    {
-
-        // console.log
-
-        System.Console.WriteLine(_sinistriNode.Count);
-        System.Console.WriteLine(_sinistriNode + " " + "sinistri node ");
-        return _sinistriNode;
-    } */
-
-
-    // sinistro by id   [HttpPost("sinistro")]
-    /*  public async Task<SinistriModel> GetSinistroID(SinistroRequest request)
-
-     {
-         System.Console.WriteLine("sinistri by fiduciario" + request.id);
-         request.username = null;
-         List<SinistriModel> sinistri = await Index();
-         System.Console.WriteLine("i sinistri sono " + sinistri.Count);
-         SinistriModel sinistro = sinistri.FirstOrDefault(x => x.id == request.id);
-
-         System.Console.WriteLine("sinistro service" + sinistro.ToString());
-
-         return sinistro;
-
-     } */
-
-    // sinistri by username     [HttpPost("fiduciario")]
-    /*  public async Task<List<SinistriModel>> GetSinistriByFiduciario(SinistroRequest username)
-     {
-
-         //List<int> termsList = new List<int>(); /7 array list
-         //   List<SinistriModel> sinistribyUsername = new List<SinistriModel>();
-         // essendo che la classe Sinistro Request accetta 2 valori metto il valore che non serve a null
-         username.id = null;
-
-         List<SinistriModel> sinistri = await Index();
-         System.Console.WriteLine("sinistri by fiduciario tutti i sinistri");
-         return sinistri.FindAll(item => item.fiduciario == username.username);
-
-
-
-
-
-
-     } */
-
-    // sinistro by username e id  [HttpPost("sinistroFiduciario")]
-
-    /*  public async Task<SinistriModel> GetPraticalDetail2(SinistroRequest body)
-     {
-
-         System.Console.WriteLine("id: sono nell get pratica controller  ");
-         // mi prendo tutti i sinistri 
-         List<SinistriModel> sinistri = await Index();
-         System.Console.WriteLine("sinistri  " + sinistri + " " + sinistri.Count);
-         // System.Console.WriteLine("sinistro service"+sinistro);
-         List<SinistriModel> sinistriFiduciario = sinistri.FindAll(item => item.fiduciario == body.username);
-
-         SinistriModel sinistro = sinistriFiduciario.FirstOrDefault(x => x.id == body.id);
-         return sinistro;
-         //return sinistro;
-
-
-     } */
-    // all sinistri chiamata 
-
-    /*   public async Task<List<SinistriModel>> Index()
-     //// client.BaseAddress va dichairato solo una volta 
-     {
-         if (client.BaseAddress == null)
-         {
-             System.Console.WriteLine("sono nell if " + client.BaseAddress);
-             client.BaseAddress = new Uri(this.url);
-            return  await getSinistri();
-
-
-         }
-         else
-         {
-             System.Console.WriteLine("sono nell else " + client.BaseAddress);
-             // client.BaseAddress = client.BaseAddress;
-         return  await getSinistri();
-
-
-         }
-     }  */
-    // fetch dati da url dichiarata sopra
-    /*  public async Task<List<SinistriModel>> getSinistri()
-     {
-
-         client.DefaultRequestHeaders.Accept.Clear();
-         // gli dico che deve accettare file json 
-         client.DefaultRequestHeaders.Accept.Add(
-               new MediaTypeWithQualityHeaderValue("application/json")
-         );
-         try
-         {
-             //  System.Console.WriteLine("sono nel try catch");
-
-             var response = await client.GetAsync(this.url);
-             response.EnsureSuccessStatusCode();
-             // mi salvo tutti i dati in una stringa 
-             string data = await response.Content.ReadAsStringAsync();
-             // converto in json
-             var json = JsonConvert.DeserializeObject<List<SinistriModel>>(data);
-             for (int i = 0; i < json.Count; i++)
-             {
-                 _sinistriNode.Add(json[i]);
-             }
-             return _sinistriNode;
-         }
-         catch (Exception e)
-         {
-
-             System.Console.WriteLine("message di errore " + e);
-             return null;
-
-         }
-
-
-     } */
+    
 
 
 

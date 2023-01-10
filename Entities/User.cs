@@ -11,6 +11,6 @@ public class User
 
     public string name {get;set;}
  
-    [JsonIgnore] // cosi la password non è visibile dalla chaiata get user
+    [JsonIgnore] // cosi la password non è visibile dalla chiamata get user
     public string Password { get; set; }
 }
